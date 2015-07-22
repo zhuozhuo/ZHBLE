@@ -86,6 +86,7 @@
     NSArray *array = [self.characteristicArray objectAtIndex:indexPath.section];
     CBCharacteristic *characteristic = [array objectAtIndex:indexPath.row];
     cell.textLabel.text = [@"characteristic:"stringByAppendingString:[characteristic.UUID UUIDString]];
+    //cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     return cell;
 }
@@ -99,6 +100,11 @@
 }
 
 #pragma mark - TableView Delegate
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
 -(void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 {
     NSArray *array = [self.characteristicArray objectAtIndex:indexPath.section];

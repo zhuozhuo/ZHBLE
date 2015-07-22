@@ -41,7 +41,12 @@
         NSLog(@"222");
         
     }
-     CBCharacteristicProperties temProperties = self.characteristic.properties;
+    
+   
+    [self.infoTextView setTextAlignment:NSTextAlignmentCenter];
+    
+    
+    CBCharacteristicProperties temProperties = self.characteristic.properties;
     NSString *string = @"";
      WEAKSELF;
     if (temProperties & CBCharacteristicPropertyNotify)//notify
@@ -55,6 +60,8 @@
             
             [data appendData:obj.value];
             NSString *temText = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+            temText  = [temText stringByAppendingString:@"\n"];
+            
             weakSelf.infoTextView.text = temText;
             if ([[[NSString alloc]initWithData:obj.value encoding:NSUTF8StringEncoding] isEqualToString:@"EOM"]) {//结束符号
                 //[weakSelf.peripheral setNotifyValue:NO forCharacteristic:weakSelf.characteristic onUpdated:nil];

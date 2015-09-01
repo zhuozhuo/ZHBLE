@@ -39,6 +39,16 @@
     
 }
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    NSString *string = [NSString stringWithFormat:@"Identifier:%@--Name:%@",[self.connectedPeripheral.identifier UUIDString],self.connectedPeripheral.name];
+    
+    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Identifier" message:string  delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil, nil];
+    [alertView show];
+    
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -105,6 +115,9 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
+
+
+
 -(void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 {
     NSArray *array = [self.characteristicArray objectAtIndex:indexPath.section];

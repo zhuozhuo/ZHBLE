@@ -42,7 +42,23 @@
         
     }
     
-   
+//    [self.peripheral discoverDescriptorsForCharacteristic:self.characteristic onFinish:^(CBCharacteristic *characitristic, NSError *error){
+//        if (!error) {
+//            NSLog(@"discriptors:%@",characitristic.descriptors);
+//            NSArray *array = characitristic.descriptors;
+//            for (CBDescriptor *descriptor in array) {
+//                [self.peripheral readValueForDescriptor:descriptor onFinish:^(CBDescriptor *objc, NSError *error){
+//                    if (!error) {
+//                        NSLog(@"descriptorValue:%@",objc.value);
+//                        
+//                    }
+//                }];
+//            }
+//            
+//        }
+//    }];
+    
+    
     [self.infoTextView setTextAlignment:NSTextAlignmentCenter];
     
     
@@ -58,13 +74,17 @@
         string =[string stringByAppendingString:@"CBCharacteristicPropertyNotify"];
         [self.peripheral setNotifyValue:YES forCharacteristic:self.characteristic onUpdated:^(CBCharacteristic *obj , NSError *error){
             
+            if (error) {
+                NSLog(@"error:%@",error);
+            }
             [data appendData:obj.value];
             NSString *temText = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+            
             temText  = [temText stringByAppendingString:@"\n"];
             
             weakSelf.infoTextView.text = temText;
             if ([[[NSString alloc]initWithData:obj.value encoding:NSUTF8StringEncoding] isEqualToString:@"EOM"]) {//结束符号
-                //[weakSelf.peripheral setNotifyValue:NO forCharacteristic:weakSelf.characteristic onUpdated:nil];
+                [weakSelf.peripheral setNotifyValue:NO forCharacteristic:weakSelf.characteristic onUpdated:nil];
             }
             
         }];

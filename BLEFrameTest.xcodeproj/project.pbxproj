@@ -21,6 +21,7 @@
 		9E34E1F01B58B055009C1867 /* deviceListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E34E1EF1B58B055009C1867 /* deviceListTableViewController.m */; };
 		9E34E1FD1B5CCB7B009C1867 /* peripheralserviceTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E34E1FC1B5CCB7B009C1867 /* peripheralserviceTableViewController.m */; };
 		9E34E2001B5CDAB7009C1867 /* infoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E34E1FF1B5CDAB7009C1867 /* infoViewController.m */; };
+		9ECFD60D1B93F7BC00D45CA5 /* ZHBLEManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ECFD60C1B93F7BC00D45CA5 /* ZHBLEManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,8 @@
 		9E34E1FE1B5CDAB7009C1867 /* infoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = infoViewController.h; sourceTree = "<group>"; };
 		9E34E1FF1B5CDAB7009C1867 /* infoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = infoViewController.m; sourceTree = "<group>"; };
 		9E34E2011B5CDF41009C1867 /* constant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = constant.h; sourceTree = "<group>"; };
+		9ECFD60B1B93F7BC00D45CA5 /* ZHBLEManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHBLEManager.h; sourceTree = "<group>"; };
+		9ECFD60C1B93F7BC00D45CA5 /* ZHBLEManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHBLEManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +156,8 @@
 				9E34E1E01B58AE45009C1867 /* ZHBLEPeripheral.m */,
 				9E34E1E11B58AE45009C1867 /* ZHStoredPeripherals.h */,
 				9E34E1E21B58AE45009C1867 /* ZHStoredPeripherals.m */,
+				9ECFD60B1B93F7BC00D45CA5 /* ZHBLEManager.h */,
+				9ECFD60C1B93F7BC00D45CA5 /* ZHBLEManager.m */,
 			);
 			path = BLE;
 			sourceTree = "<group>";
@@ -222,6 +227,7 @@
 				TargetAttributes = {
 					9E34E1AF1B58AE0A009C1867 = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = 25DYHS38AG;
 					};
 					9E34E1C81B58AE0A009C1867 = {
 						CreatedOnToolsVersion = 6.4;
@@ -278,6 +284,7 @@
 				9E34E2001B5CDAB7009C1867 /* infoViewController.m in Sources */,
 				9E34E1E51B58AE45009C1867 /* ZHStoredPeripherals.m in Sources */,
 				9E34E1F01B58B055009C1867 /* deviceListTableViewController.m in Sources */,
+				9ECFD60D1B93F7BC00D45CA5 /* ZHBLEManager.m in Sources */,
 				9E34E1E41B58AE45009C1867 /* ZHBLEPeripheral.m in Sources */,
 				9E34E1FD1B5CCB7B009C1867 /* peripheralserviceTableViewController.m in Sources */,
 				9E34E1B61B58AE0A009C1867 /* main.m in Sources */,
@@ -407,10 +414,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = BLEFrameTest/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -418,10 +428,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = BLEFrameTest/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -478,6 +491,7 @@
 				9E34E1D51B58AE0A009C1867 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9E34E1D61B58AE0A009C1867 /* Build configuration list for PBXNativeTarget "BLEFrameTestTests" */ = {
 			isa = XCConfigurationList;
@@ -486,6 +500,7 @@
 				9E34E1D81B58AE0A009C1867 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

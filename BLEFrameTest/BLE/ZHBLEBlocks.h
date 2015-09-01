@@ -21,7 +21,7 @@ typedef void (^ZHDescriptorChangedBlock)(CBDescriptor * descriptor, NSError * er
 typedef void (^ZHSpecifiedServiceUpdatedBlock)(CBService *service, NSError *error);
 typedef void (^ZHObjectChagedBlock)(NSError *error);
 typedef void (^ZHServicesUpdated)(NSArray *service);
-typedef void (^ZHPeripheralUpdatedBlock)(ZHBLEPeripheral *peripheral);
+typedef void (^ZHPeripheralUpdatedBlock)(ZHBLEPeripheral *peripheral,NSDictionary *advertizeData);
 typedef void (^ZHPeripheralConnectionBlock)(ZHBLEPeripheral *peripheral, NSError*error);
 
 

@@ -93,8 +93,6 @@
     
     [userDefaults setObject:newDevices forKey:@"storedPeripherals"];
     [userDefaults synchronize];
-    
-    
 }
 
 

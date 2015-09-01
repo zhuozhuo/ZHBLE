@@ -11,6 +11,8 @@
 #import <UIKit/UIKit.h>
 #import "ZHStoredPeripherals.h"
 #import "ZHBLEPeripheral.h"
+#import "ZHBLEManager.h"
+
 @interface ZHBLECentral()<CBCentralManagerDelegate,CBPeripheralDelegate>
 @end
 
@@ -154,21 +156,25 @@
 
 
 
-#pragma mark -CBCentralManagerDelegate
 
+#pragma mark -CBCentralManagerDelegate
 -(void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI
 {
     ZHBLEPeripheral *zhPeripheral = peripheral.delegate;
     if (!zhPeripheral) {
        zhPeripheral = [[ZHBLEPeripheral alloc] initWithPeripheral:peripheral];
     }
+   // NSLog(@"advertisementData:%@",advertisementData);
+    
     if (zhPeripheral && ![self.peripherals containsObject:peripheral]) {
         [self.peripherals addObject:zhPeripheral];
     }
     zhPeripheral.RSSI = RSSI;
-    _onPeripheralUpdated(zhPeripheral);
+    _onPeripheralUpdated(zhPeripheral,advertisementData);
     
 }
+
+
 
 #pragma mark Monitoring Connections with Peripherals
 -(void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral
@@ -179,6 +185,9 @@
         //remove it from connectiongPeripherals
         [self.connectingPeripherals removeObject:thePeripheral];
         [self.connectedPeripherals addObject:thePeripheral];
+        
+        ZHBLEManager *manager = [ZHBLEManager sharedZHBLEManager];
+        manager.connectPeripheral = peripheral;
         
         //存储到本地
         [ZHStoredPeripherals saveUUID:peripheral.identifier];
@@ -218,6 +227,11 @@
     ZHBLEPeripheral *thePeripheral = peripheral.delegate;
     if (thePeripheral && [self.connectedPeripherals containsObject:thePeripheral]) {
         ZHPeripheralConnectionBlock finish = self.disconnectedBlocks[peripheral.identifier];
+        
+        //设置manager Peripheral 为空
+        ZHBLEManager *manager = [ZHBLEManager sharedZHBLEManager];
+        manager.connectPeripheral = nil;
+        
         [self.connectedPeripherals removeObject:peripheral];
         if (finish) {
             finish(thePeripheral,error);
@@ -249,7 +263,7 @@
                 [self clearPeripherals];
                 if (_onPeripheralUpdated)
                 {
-                    _onPeripheralUpdated(nil);
+                    _onPeripheralUpdated(nil,nil);
                 }
             }
                 break;
@@ -257,7 +271,7 @@
             {
                 if (_onPeripheralUpdated)
                 {
-                    _onPeripheralUpdated(nil);
+                    _onPeripheralUpdated(nil,nil);
                 }
             }
                 break;
@@ -266,7 +280,7 @@
                 [self clearPeripherals];
                 if (_onPeripheralUpdated)
                 {
-                    _onPeripheralUpdated(nil);
+                    _onPeripheralUpdated(nil,nil);
                 }
             }
                 break;

@@ -53,6 +53,17 @@
     
 }
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self scan];
+}
+
+-(void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    [self.central stopScan];
+}
 
 
 - (void)didReceiveMemoryWarning {
@@ -64,13 +75,19 @@
 -(void)scan
 {
     WEAKSELF;
-    [self.central scanPeripheralWithServices:nil options:@{CBCentralManagerScanOptionAllowDuplicatesKey: @(YES)} onUpdated:^(ZHBLEPeripheral *peripheral){
+    NSUUID *uuid = [[NSUUID alloc] initWithUUIDString:TRANSFER_CHARACTERISTIC_UUID];
+    
+    [self.central scanPeripheralWithServices:nil options:@{CBCentralManagerScanOptionAllowDuplicatesKey: @(YES)} onUpdated:^(ZHBLEPeripheral *peripheral,NSDictionary *data){
         if (peripheral) {
+            
              [weakSelf addPeripheralToFindDevice:peripheral];
         }
        
     }];
+
 }
+
+
 
 
 -(void)addPeripheralToFindDevice:(ZHBLEPeripheral *)peripheral
@@ -234,8 +251,15 @@
         [weakSelf deletePeripheralInFindDevice:peripheral];
         [weakSelf addPeripheralToConnectedDevice:peripheral];
         [weakSelf pushWithPeripheral:peripheral];
+        NSLog(@"服务:%@",peripheral.peripheral.services);
+        
         [self.tableView reloadData];
     }onDisconnected:^(ZHBLEPeripheral *peripheral, NSError *error){
+        NSString *errorString = [NSString stringWithFormat:@"%@",error];
+        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"断开提示" message:errorString delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alertView show];
+        
+        
         [weakSelf deletePeripheralInConnectedDevice:peripheral];
         [ZHStoredPeripherals deleteUUID:peripheral.identifier];
         

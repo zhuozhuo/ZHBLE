@@ -44,8 +44,8 @@
     [super viewDidAppear:animated];
     NSString *string = [NSString stringWithFormat:@"Identifier:%@--Name:%@",[self.connectedPeripheral.identifier UUIDString],self.connectedPeripheral.name];
     
-    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Identifier" message:string  delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil, nil];
-    [alertView show];
+//    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Identifier" message:string  delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil, nil];
+//    [alertView show];
     
 }
 

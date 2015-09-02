@@ -35,6 +35,10 @@
 
 #pragma mark scan or stopScan methods
 
+
+
+
+
 /**
  *  scan offer some special service advertising advice
  *

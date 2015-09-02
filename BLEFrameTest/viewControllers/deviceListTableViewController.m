@@ -12,6 +12,8 @@
 #import "deviceListTableViewController.h"
 #import "peripheralserviceTableViewController.h"
 #import "constant.h"
+#import "ZHStoredPeripherals.h"
+
 @interface deviceListTableViewController ()
 
 @end
@@ -71,11 +73,26 @@
     // Dispose of any resources that can be recreated.
 }
 
+
 #pragma mark - Public Interface
 -(void)scan
 {
     WEAKSELF;
     NSUUID *uuid = [[NSUUID alloc] initWithUUIDString:TRANSFER_CHARACTERISTIC_UUID];
+    NSArray *identifiers = [ZHStoredPeripherals genIdentifiers];
+    NSLog(@"identifiers:%@",identifiers);
+    
+//    NSArray *serviceConnectedPeripheral = [self.central retrieveConnectedPeripheralsWithServices:@[[CBUUID UUIDWithString:@"7905F431-B5CE-4E99-A40F-4B1E122D00D0"]]];
+//    
+//    NSLog(@"serviceConnectedPeripheral:%@",serviceConnectedPeripheral);
+    
+    NSArray *conectedPeripherals = [self.central retrievePeriphearlsWithIdentifiers:identifiers];
+    NSLog(@"已经连上的peripheral:%@",conectedPeripherals);
+    
+    [conectedPeripherals enumerateObjectsUsingBlock:^(id obj, NSUInteger index, BOOL *stop){
+        ZHBLEPeripheral *peripheral = obj;
+        [weakSelf addPeripheralToConnectedDevice:peripheral];
+    }];
     
     [self.central scanPeripheralWithServices:nil options:@{CBCentralManagerScanOptionAllowDuplicatesKey: @(YES)} onUpdated:^(ZHBLEPeripheral *peripheral,NSDictionary *data){
         if (peripheral) {
@@ -187,10 +204,14 @@
         case 0:
         {
             peripherial = [self.connectedDeviceArray objectAtIndex:indexPath.row];
-            if ([[peripherial.identifier UUIDString] isEqualToString: [self.connectedPeripheral.identifier UUIDString]]) {
-                cell.detailTextLabel.text = @"已连接";
-            }else
-                cell.detailTextLabel.text = @"未连接";
+            cell.detailTextLabel.text = @"已连接";
+            
+            //TODO: 判断是否为唯一已经连接上的手表
+            
+//            if ([[peripherial.identifier UUIDString] isEqualToString: [self.connectedPeripheral.identifier UUIDString]]) {
+//                cell.detailTextLabel.text = @"已连接";
+//            }else
+//                cell.detailTextLabel.text = @"未连接";
         }
             break;
         case 1:
@@ -235,11 +256,18 @@
 {
     ZHBLEPeripheral *peripheral = nil;
     switch (indexPath.section) {
-        case 0:
-            peripheral = [self.connectedDeviceArray objectAtIndex:indexPath.row];
+        case 0:{
+             peripheral = [self.connectedDeviceArray objectAtIndex:indexPath.row];
+            //[self pushWithPeripheral:peripheral];
+        }
+           
             break;
          case 1:
-            peripheral = [self.findDeviceArray objectAtIndex:indexPath.row];
+        {
+             peripheral = [self.findDeviceArray objectAtIndex:indexPath.row];
+            
+        }
+           
             break;
         default:
             break;
@@ -251,7 +279,13 @@
         [weakSelf deletePeripheralInFindDevice:peripheral];
         [weakSelf addPeripheralToConnectedDevice:peripheral];
         [weakSelf pushWithPeripheral:peripheral];
-        NSLog(@"服务:%@",peripheral.peripheral.services);
+        
+        
+        NSLog(@"广播的服务:%@",peripheral.peripheral.services);
+        [peripheral.peripheral.services enumerateObjectsUsingBlock:^(id obj, NSUInteger index, BOOL *stop){
+            CBService *service = obj;
+            NSLog(@"serviceUUID:%@",[service.UUID UUIDString]);
+        }];
         
         [self.tableView reloadData];
     }onDisconnected:^(ZHBLEPeripheral *peripheral, NSError *error){
@@ -264,6 +298,7 @@
         [ZHStoredPeripherals deleteUUID:peripheral.identifier];
         
     }];
+
 }
 
 

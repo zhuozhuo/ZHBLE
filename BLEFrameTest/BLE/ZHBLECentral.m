@@ -83,6 +83,10 @@
     return self.manager.state;
 }
 
+
+
+
+
 #pragma mark -Scanning or stopping Scan of Peripheral
 
 -(void)scanPeripheralWithServices:(NSArray *)serviceUUIDs options:(NSDictionary *)options onUpdated:(ZHPeripheralUpdatedBlock)onUpdateBlock

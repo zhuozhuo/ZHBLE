@@ -10,7 +10,7 @@
 #import "ZHBLECentral.h"
 #import "ZHStoredPeripherals.h"
 #import "ZHBLEPeripheral.h"
-@interface deviceListTableViewController : UITableViewController
+@interface DeviceListTableViewController : UITableViewController
 @property(nonatomic, strong)NSMutableArray *connectedDeviceArray;
 @property(nonatomic, strong)NSMutableArray *findDeviceArray;
 @property(nonatomic, strong)ZHBLECentral *central;

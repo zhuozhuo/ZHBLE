@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ZHBLEPeripheral.h"
-@interface infoViewController : UIViewController
+@interface InfoViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UILabel *propertyLabel;
 @property (weak, nonatomic) IBOutlet UITextView *infoTextView;
 

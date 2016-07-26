@@ -6,14 +6,14 @@
 //  Copyright (c) 2015年 zhuo. All rights reserved.
 //
 
-#import "peripheralserviceTableViewController.h"
-#import "constant.h"
+#import "PeripheralserviceTableViewController.h"
+#import "Constant.h"
 #import "infoViewController.h"
-@interface peripheralserviceTableViewController ()
+@interface PeripheralserviceTableViewController ()
 
 @end
 
-@implementation peripheralserviceTableViewController
+@implementation PeripheralserviceTableViewController
 
 
 #pragma mark － LifeView cycle
@@ -137,7 +137,7 @@
     
     ZHBLEPeripheral *peripheral = [dic objectForKey:@"peripheral"];
     CBCharacteristic *characteristic = [dic objectForKey:@"characteristic"];
-    infoViewController *infoVC = [segue destinationViewController];
+    InfoViewController *infoVC = [segue destinationViewController];
     infoVC.peripheral = peripheral;
     infoVC.characteristic = characteristic;
     

@@ -6,13 +6,13 @@
 //  Copyright (c) 2015年 zhuo. All rights reserved.
 //
 
-#import "infoViewController.h"
-#import "constant.h"
-@interface infoViewController ()
+#import "InfoViewController.h"
+#import "Constant.h"
+@interface InfoViewController ()
 
 @end
 
-@implementation infoViewController
+@implementation InfoViewController
 
 
 #pragma mark - ViewLife cycle

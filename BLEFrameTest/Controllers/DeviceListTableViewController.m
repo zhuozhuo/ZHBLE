@@ -9,16 +9,16 @@
 
 #define bleCellIdentifier @"searchBleCellIdentifier"
 
-#import "deviceListTableViewController.h"
+#import "DeviceListTableViewController.h"
 #import "peripheralserviceTableViewController.h"
-#import "constant.h"
+#import "Constant.h"
 #import "ZHStoredPeripherals.h"
 
-@interface deviceListTableViewController ()
+@interface DeviceListTableViewController ()
 
 @end
 
-@implementation deviceListTableViewController
+@implementation DeviceListTableViewController
 
 
 #pragma mark - ViewLife cycle
@@ -316,7 +316,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    peripheralserviceTableViewController *serviceVC = [segue destinationViewController];
+    PeripheralserviceTableViewController *serviceVC = [segue destinationViewController];
     ZHBLEPeripheral *peripheral = (ZHBLEPeripheral*)sender;
     
     serviceVC.connectedPeripheral = peripheral;

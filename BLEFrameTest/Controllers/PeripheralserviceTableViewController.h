@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ZHBLEPeripheral.h"
 
-@interface peripheralserviceTableViewController : UITableViewController
+@interface PeripheralserviceTableViewController : UITableViewController
 
 @property(nonatomic, strong) NSArray *serviceArray;
 @property(nonatomic, strong) NSMutableArray *characteristicArray;

@@ -34,6 +34,7 @@
     }
     self.central = [[ZHBLECentral alloc]initWithQueue:nil options:opts];
     NSArray *storedArray = [ZHStoredPeripherals genIdentifiers];
+    NSLog(@"storedIdentifier:%@",storedArray);
     NSArray *peripherayArray = nil;
     if (storedArray.count>0) {
        peripherayArray = [self.central retrievePeriphearlsWithIdentifiers:storedArray];
@@ -82,7 +83,10 @@
         [weakSelf addPeripheralToConnectedDevice:peripheral];
     }];
     
-    [self.central scanPeripheralWithServices:nil options:@{CBCentralManagerScanOptionAllowDuplicatesKey: @(YES)} onUpdated:^(ZHBLEPeripheral *peripheral,NSDictionary *data){
+    CBUUID *uuid = [CBUUID UUIDWithString:TRANSFER_SERVICE_UUID];
+    NSArray *uuids = @[uuid];
+    
+    [self.central scanPeripheralWithServices:uuids options:@{CBCentralManagerScanOptionAllowDuplicatesKey: @(YES)} onUpdated:^(ZHBLEPeripheral *peripheral,NSDictionary *data){
         if (peripheral) {
             
              [weakSelf addPeripheralToFindDevice:peripheral];
@@ -250,27 +254,28 @@
             break;
     }
     WEAKSELF;
-    
     [self.central connectPeripheral:peripheral options:nil onFinished:^(ZHBLEPeripheral *peripheral, NSError *error){
         weakSelf.connectedPeripheral = peripheral;
         [weakSelf deletePeripheralInFindDevice:peripheral];
         [weakSelf addPeripheralToConnectedDevice:peripheral];
-        [weakSelf pushWithPeripheral:peripheral];
+       
         [peripheral.peripheral.services enumerateObjectsUsingBlock:^(id obj, NSUInteger index, BOOL *stop){
             CBService *service = obj;
             NSLog(@"serviceUUID:%@",[service.UUID UUIDString]);
         }];
-        
-        [self.tableView reloadData];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [weakSelf pushWithPeripheral:peripheral];
+            [self.tableView reloadData];
+        });
     }onDisconnected:^(ZHBLEPeripheral *peripheral, NSError *error){
-        NSString *errorString = [NSString stringWithFormat:@"%@",error];
-        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Disconnected" message:errorString delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-        [alertView show];
-        
-        
         [weakSelf deletePeripheralInConnectedDevice:peripheral];
         [ZHStoredPeripherals deleteUUID:peripheral.identifier];
-        
+        NSString *errorString = [NSString stringWithFormat:@"%@",error];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Disconnected" message:errorString delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            [alertView show];
+            
+        });
     }];
 
 }

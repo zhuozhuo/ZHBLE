@@ -8,7 +8,7 @@
 
 #import "PeripheralserviceTableViewController.h"
 #import "Constant.h"
-#import "infoViewController.h"
+
 @interface PeripheralserviceTableViewController ()
 
 @end
@@ -19,7 +19,7 @@
 #pragma mark － LifeView cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"Service";
+    self.title = @"Services";
     self.tableView.tableFooterView = [[UIView alloc]init];
     self.characteristicArray = [NSMutableArray array];
     WEAKSELF;
@@ -88,7 +88,8 @@
     NSArray *array = [self.characteristicArray objectAtIndex:indexPath.section];
     CBCharacteristic *characteristic = [array objectAtIndex:indexPath.row];
     cell.textLabel.text = [@"Characteristic:"stringByAppendingString:[characteristic.UUID UUIDString]];
-    //cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    NSString *string = [self GetCharacteristicProperties:characteristic];
+    cell.detailTextLabel.text = string;
     return cell;
 }
 
@@ -104,37 +105,93 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-}
-
-
-
--(void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
-{
+   
     NSArray *array = [self.characteristicArray objectAtIndex:indexPath.section];
     CBCharacteristic *characteristic = [array objectAtIndex:indexPath.row];
-    NSDictionary *dic =@{ @"peripheral":self.connectedPeripheral,@"characteristic":characteristic};
-    [self performSegueWithIdentifier:@"infoViewController" sender:dic];
+    CBCharacteristicProperties temProperties = characteristic.properties;
+    if (temProperties & CBCharacteristicPropertyNotify)//Notify
+    {
+        __block  NSMutableData *data = [[NSMutableData alloc]init];
+        [data setLength:0];
+        [self.connectedPeripheral setNotifyValue:YES forCharacteristic:characteristic onUpdated:^(CBCharacteristic *obj , NSError *error){
+            if (error) {
+                NSLog(@"Error:%@",error);
+            }
+           [data appendData:obj.value];
+            NSString *value = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+            NSLog(@"NotifyValue:%@",value);
+        }];
+    }
+    if(temProperties & CBCharacteristicPropertyIndicate)//Indicate
+    {
+        __block  NSMutableData *data = [[NSMutableData alloc]init];
+        [data setLength:0];
+        [self.connectedPeripheral setNotifyValue:YES forCharacteristic:characteristic onUpdated:^(CBCharacteristic *obj , NSError *error){
+            [data appendData:obj.value];
+            NSString *value = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+            NSLog(@"IndicateValue:%@",value);
+        }];
+    }
     
+    if(temProperties & CBCharacteristicPropertyRead)//Read
+    {
+        [self.connectedPeripheral readValueForCharacteristic:characteristic onFinish:^(CBCharacteristic *obj, NSError *error){
+            NSData *data = obj.value;
+            NSString *value = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+            NSLog(@"readValue:%@",value);
+        }];
+    }
+    if(temProperties & CBCharacteristicPropertyWrite)//White
+    {
+        NSString *temString = @"test,test";
+        NSData *temData = [temString dataUsingEncoding:NSUTF8StringEncoding];
+        [self.connectedPeripheral writeValue:temData forCharacteristic:characteristic type:CBCharacteristicWriteWithResponse onFinish:^(CBCharacteristic *obj, NSError *error){
+            NSString *result = nil;
+            if (!error) {
+                result = @"Write success";
+            }else{
+                 result = [NSString stringWithFormat:@"Write data Error :%@",[error localizedDescription]];
+            }
+            NSLog(@"Write Result:%@",result);
+        }];
+    }
+
 }
 
+
+
+#pragma mark - Private Methods
+-(NSString *)GetCharacteristicProperties:(CBCharacteristic *)characteristic
+{
+    CBCharacteristicProperties temProperties = characteristic.properties;
+    NSString *string = @"CBCharacteristicProperty:";
+    if (temProperties & CBCharacteristicPropertyNotify)//notify
+    {
+        string =[string stringByAppendingString:@"Notify "];
+    }
+    if(temProperties & CBCharacteristicPropertyIndicate)//indicate
+    {
+        string =[string stringByAppendingString:@"Indicate "];
+    }
+    
+    if(temProperties & CBCharacteristicPropertyRead)//read
+    {
+        string =[string stringByAppendingString:@"Read "];
+    }
+    if(temProperties & CBCharacteristicPropertyWrite)//White
+    {
+        string =[string stringByAppendingString:@"Write "];
+    }
+  
+    return string;
+}
 
 
 #pragma mark - Navigation
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
-    NSDictionary *dic = (NSDictionary *)sender;
-    
-    ZHBLEPeripheral *peripheral = [dic objectForKey:@"peripheral"];
-    CBCharacteristic *characteristic = [dic objectForKey:@"characteristic"];
-    InfoViewController *infoVC = [segue destinationViewController];
-    infoVC.peripheral = peripheral;
-    infoVC.characteristic = characteristic;
-    
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-    
+        
 }
 
 

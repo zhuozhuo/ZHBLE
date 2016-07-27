@@ -55,15 +55,15 @@
             devices = [[NSMutableArray alloc] initWithArray:existingDevices];
             
             if (uuidString) {
-                BOOL test = YES;
+                BOOL have = NO;
                 
                 for (NSString *obj in existingDevices) {
                     if ([obj isEqualToString:uuidString]) {
-                        test = NO;
+                        have = YES;
                         break;
                     }
                 }
-                if (test) {
+                if (!have) {
                     [devices addObject:uuidString];
                 }
             }

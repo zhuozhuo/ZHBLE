@@ -17,11 +17,13 @@
 		9EC46A6C1D48854A00F3BBE0 /* ZHPeripheralManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EC46A541D48854A00F3BBE0 /* ZHPeripheralManager.m */; };
 		9EC46A6D1D48854A00F3BBE0 /* ZHStoredPeripherals.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EC46A561D48854A00F3BBE0 /* ZHStoredPeripherals.m */; };
 		9EC46A6E1D48854A00F3BBE0 /* DeviceListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EC46A5A1D48854A00F3BBE0 /* DeviceListTableViewController.m */; };
-		9EC46A6F1D48854A00F3BBE0 /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EC46A5C1D48854A00F3BBE0 /* InfoViewController.m */; };
 		9EC46A701D48854A00F3BBE0 /* PeripheralserviceTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EC46A5E1D48854A00F3BBE0 /* PeripheralserviceTableViewController.m */; };
 		9EC46A711D48854A00F3BBE0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9EC46A611D48854A00F3BBE0 /* Images.xcassets */; };
 		9EC46A731D48854A00F3BBE0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EC46A631D48854A00F3BBE0 /* main.m */; };
 		9EC46A7A1D48866900F3BBE0 /* ZHBLETests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EC46A761D48858800F3BBE0 /* ZHBLETests.m */; };
+		9EC46A851D48910800F3BBE0 /* HomepageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EC46A841D48910800F3BBE0 /* HomepageTableViewController.m */; };
+		9EC46A881D48A09900F3BBE0 /* PeripheralTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EC46A871D48A09900F3BBE0 /* PeripheralTableViewController.m */; };
+		9EC46A8C1D48ABEA00F3BBE0 /* UIAlertView+showAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EC46A8B1D48ABEA00F3BBE0 /* UIAlertView+showAlertView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,16 +57,20 @@
 		9EC46A561D48854A00F3BBE0 /* ZHStoredPeripherals.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHStoredPeripherals.m; sourceTree = "<group>"; };
 		9EC46A591D48854A00F3BBE0 /* DeviceListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceListTableViewController.h; sourceTree = "<group>"; };
 		9EC46A5A1D48854A00F3BBE0 /* DeviceListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceListTableViewController.m; sourceTree = "<group>"; };
-		9EC46A5B1D48854A00F3BBE0 /* InfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoViewController.h; sourceTree = "<group>"; };
-		9EC46A5C1D48854A00F3BBE0 /* InfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoViewController.m; sourceTree = "<group>"; };
 		9EC46A5D1D48854A00F3BBE0 /* PeripheralserviceTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeripheralserviceTableViewController.h; sourceTree = "<group>"; };
 		9EC46A5E1D48854A00F3BBE0 /* PeripheralserviceTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeripheralserviceTableViewController.m; sourceTree = "<group>"; };
-		9EC46A5F1D48854A00F3BBE0 /* Constant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constant.h; sourceTree = "<group>"; };
 		9EC46A611D48854A00F3BBE0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		9EC46A621D48854A00F3BBE0 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9EC46A631D48854A00F3BBE0 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		9EC46A761D48858800F3BBE0 /* ZHBLETests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHBLETests.m; sourceTree = "<group>"; };
 		9EC46A7F1D48877D00F3BBE0 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9EC46A821D4890AA00F3BBE0 /* Constant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constant.h; sourceTree = "<group>"; };
+		9EC46A831D48910800F3BBE0 /* HomepageTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomepageTableViewController.h; sourceTree = "<group>"; };
+		9EC46A841D48910800F3BBE0 /* HomepageTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomepageTableViewController.m; sourceTree = "<group>"; };
+		9EC46A861D48A09900F3BBE0 /* PeripheralTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeripheralTableViewController.h; sourceTree = "<group>"; };
+		9EC46A871D48A09900F3BBE0 /* PeripheralTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeripheralTableViewController.m; sourceTree = "<group>"; };
+		9EC46A8A1D48ABEA00F3BBE0 /* UIAlertView+showAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+showAlertView.h"; sourceTree = "<group>"; };
+		9EC46A8B1D48ABEA00F3BBE0 /* UIAlertView+showAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+showAlertView.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +114,8 @@
 		9EC46A431D48854A00F3BBE0 /* ZHBLE */ = {
 			isa = PBXGroup;
 			children = (
+				9EC46A891D48ABEA00F3BBE0 /* Categories */,
+				9EC46A811D48909E00F3BBE0 /* Common */,
 				9EC46A641D48854A00F3BBE0 /* Models */,
 				9EC46A651D48854A00F3BBE0 /* Views */,
 				9EC46A571D48854A00F3BBE0 /* Controllers */,
@@ -152,8 +160,9 @@
 		9EC46A571D48854A00F3BBE0 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				9EC46A831D48910800F3BBE0 /* HomepageTableViewController.h */,
+				9EC46A841D48910800F3BBE0 /* HomepageTableViewController.m */,
 				9EC46A581D48854A00F3BBE0 /* Central */,
-				9EC46A5F1D48854A00F3BBE0 /* Constant.h */,
 				9EC46A601D48854A00F3BBE0 /* Peripheral */,
 			);
 			path = Controllers;
@@ -164,8 +173,6 @@
 			children = (
 				9EC46A591D48854A00F3BBE0 /* DeviceListTableViewController.h */,
 				9EC46A5A1D48854A00F3BBE0 /* DeviceListTableViewController.m */,
-				9EC46A5B1D48854A00F3BBE0 /* InfoViewController.h */,
-				9EC46A5C1D48854A00F3BBE0 /* InfoViewController.m */,
 				9EC46A5D1D48854A00F3BBE0 /* PeripheralserviceTableViewController.h */,
 				9EC46A5E1D48854A00F3BBE0 /* PeripheralserviceTableViewController.m */,
 			);
@@ -175,6 +182,8 @@
 		9EC46A601D48854A00F3BBE0 /* Peripheral */ = {
 			isa = PBXGroup;
 			children = (
+				9EC46A861D48A09900F3BBE0 /* PeripheralTableViewController.h */,
+				9EC46A871D48A09900F3BBE0 /* PeripheralTableViewController.m */,
 			);
 			path = Peripheral;
 			sourceTree = "<group>";
@@ -200,6 +209,23 @@
 				9EC46A761D48858800F3BBE0 /* ZHBLETests.m */,
 			);
 			path = ZHBLETests;
+			sourceTree = "<group>";
+		};
+		9EC46A811D48909E00F3BBE0 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				9EC46A821D4890AA00F3BBE0 /* Constant.h */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		9EC46A891D48ABEA00F3BBE0 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				9EC46A8A1D48ABEA00F3BBE0 /* UIAlertView+showAlertView.h */,
+				9EC46A8B1D48ABEA00F3BBE0 /* UIAlertView+showAlertView.m */,
+			);
+			path = Categories;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -304,12 +330,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				9EC46A731D48854A00F3BBE0 /* main.m in Sources */,
+				9EC46A851D48910800F3BBE0 /* HomepageTableViewController.m in Sources */,
+				9EC46A8C1D48ABEA00F3BBE0 /* UIAlertView+showAlertView.m in Sources */,
 				9EC46A6E1D48854A00F3BBE0 /* DeviceListTableViewController.m in Sources */,
 				9EC46A701D48854A00F3BBE0 /* PeripheralserviceTableViewController.m in Sources */,
 				9EC46A6A1D48854A00F3BBE0 /* ZHBLEManager.m in Sources */,
-				9EC46A6F1D48854A00F3BBE0 /* InfoViewController.m in Sources */,
 				9EC46A6B1D48854A00F3BBE0 /* ZHBLEPeripheral.m in Sources */,
 				9EC46A6D1D48854A00F3BBE0 /* ZHStoredPeripherals.m in Sources */,
+				9EC46A881D48A09900F3BBE0 /* PeripheralTableViewController.m in Sources */,
 				9EC46A6C1D48854A00F3BBE0 /* ZHPeripheralManager.m in Sources */,
 				9EC46A661D48854A00F3BBE0 /* AppDelegate.m in Sources */,
 				9EC46A691D48854A00F3BBE0 /* ZHBLECentral.m in Sources */,

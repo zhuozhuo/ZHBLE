@@ -279,8 +279,6 @@
         [weakSelf deletePeripheralInFindDevice:peripheral];
         [weakSelf addPeripheralToConnectedDevice:peripheral];
         [weakSelf pushWithPeripheral:peripheral];
-        
-        
         NSLog(@"广播的服务:%@",peripheral.peripheral.services);
         [peripheral.peripheral.services enumerateObjectsUsingBlock:^(id obj, NSUInteger index, BOOL *stop){
             CBService *service = obj;
@@ -306,7 +304,6 @@
 #pragma mark - Push
 -(void)pushWithPeripheral:(ZHBLEPeripheral *)peripheral
 {
-    
     [self performSegueWithIdentifier:@"serviceViewController" sender:peripheral];
     
 }

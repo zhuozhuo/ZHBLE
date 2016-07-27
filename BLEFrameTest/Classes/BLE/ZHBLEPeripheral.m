@@ -10,14 +10,14 @@
 @interface ZHBLEPeripheral()<CBPeripheralDelegate>
 @property (nonatomic, copy)   ZHObjectChagedBlock didFinishServiceDiscovery;
 @property (nonatomic, copy)   ZHObjectChagedBlock rssiUpdated;
-@property (nonatomic, strong) NSMutableDictionary * servicesFindingIncludeService;
-@property (nonatomic, strong) NSMutableDictionary * characteristicsDiscoveredBlocks;
+@property (nonatomic, strong) NSMutableDictionary * servicesFindingIncludeService; //callbacks for finding included Services of specified Service
+@property (nonatomic, strong) NSMutableDictionary * characteristicsDiscoveredBlocks; //callbacks for finding Characteristics
 @property (nonatomic, strong) NSMutableDictionary * descriptorDiscoveredBlocks;
-@property (nonatomic, strong) NSMutableDictionary * characteristicsValueUpdatedBlocks;
+@property (nonatomic, strong) NSMutableDictionary * characteristicsValueUpdatedBlocks; //read value callbacks
 @property (nonatomic, strong) NSMutableDictionary * descriptorValueUpdatedBlocks;
-@property (nonatomic, strong) NSMutableDictionary * characteristicValueWrtieBlocks;
-@property (nonatomic, strong) NSMutableDictionary * descriptorValueWrtieBlocks;
-@property (nonatomic, strong) NSMutableDictionary * characteristicsNotifyBlocks;
+@property (nonatomic, strong) NSMutableDictionary * characteristicValueWrtieBlocks; // write value callbacks for Characteristic
+@property (nonatomic, strong) NSMutableDictionary * descriptorValueWrtieBlocks; // write value callbacks for Descriptor
+@property (nonatomic, strong) NSMutableDictionary * characteristicsNotifyBlocks; //for Characteristics Notification
 @end
 
 @implementation ZHBLEPeripheral
@@ -34,20 +34,19 @@
     if (self) {
         _peripheral = peripheral;
         _peripheral.delegate = self;
-        //#callbacks for finding included services of specified service
         
         self.servicesFindingIncludeService = [NSMutableDictionary dictionary];
-        //
+        
         self.characteristicsDiscoveredBlocks = [NSMutableDictionary dictionary];
         self.descriptorDiscoveredBlocks = [NSMutableDictionary dictionary];
-        //# read value callbacks
+        
         self.characteristicsValueUpdatedBlocks =[NSMutableDictionary dictionary];
         self.descriptorValueUpdatedBlocks  =[NSMutableDictionary dictionary];
-        //# write value callbacks
+        
         self.characteristicValueWrtieBlocks =[NSMutableDictionary dictionary];
         self.descriptorValueWrtieBlocks =[NSMutableDictionary dictionary];
         
-        //#for characteristics notification
+        
         self.characteristicsNotifyBlocks = [NSMutableDictionary dictionary];
     }
     return self;
@@ -110,7 +109,7 @@
 
 -(void)discoverIncludedServices:(NSArray *)includedServiceUUIDs forService:(CBService *)service onFinish:(ZHSpecifiedServiceUpdatedBlock)finished
 {
-     NSAssert(finished!=nil, @"block finished must'not be nil!");
+    NSAssert(finished!=nil, @"block finished must'not be nil!");
     _servicesFindingIncludeService[service.UUID] = finished;
     [_peripheral discoverIncludedServices:includedServiceUUIDs forService:service];
     
@@ -177,7 +176,7 @@
     if (enabled) {
         NSAssert(onUpdated!=nil, @"block onUpdated must'not be nil!");
         self.characteristicsNotifyBlocks[characteristic.UUID] =  onUpdated;
-
+        
     }else{
         [self.characteristicsNotifyBlocks removeObjectForKey:characteristic.UUID];
     }
@@ -337,7 +336,6 @@
                 }
             }
         }
-        
     }
 }
 

@@ -15,9 +15,9 @@
 
 @interface ZHBLECentral : NSObject
 
-@property(nonatomic, strong, readonly)NSMutableArray *peripherals;
-@property(nonatomic, readonly)CBCentralManagerState state;
-@property(nonatomic, copy)ZHObjectChagedBlock onStateChanged;
+@property(nonatomic, strong, readonly) NSMutableArray *peripherals;
+@property(nonatomic, readonly) CBCentralManagerState state;
+@property(nonatomic, copy) ZHObjectChagedBlock onStateChanged;
 @property (nonatomic, strong) dispatch_queue_t queue;
 @property (nonatomic, strong) CBCentralManager * manager;
 
@@ -29,16 +29,12 @@
 @property (nonatomic, strong) NSMutableDictionary * disconnectedBlocks;
 @property (nonatomic, strong) NSMutableDictionary * connectionFinishBlocks;
 
-
+#pragma mark initial Methods
 -(instancetype)initWithQueue:(dispatch_queue_t)queue;
+
 -(instancetype)initWithQueue:(dispatch_queue_t)queue options:(NSDictionary *)options;
 
 #pragma mark scan or stopScan methods
-
-
-
-
-
 /**
  *  scan offer some special service advertising advice
  *
@@ -53,11 +49,13 @@
 
 #pragma mark Establishing or Canceling Connection
 -(void)connectPeripheral:(ZHBLEPeripheral *)peripheral options:(NSDictionary *)options onFinished:(ZHPeripheralConnectionBlock) finished onDisconnected:(ZHPeripheralConnectionBlock) onDisconnected;
+
 -(void)cancelPeripheralConnection:(ZHBLEPeripheral *)peripheral onFinished:(ZHPeripheralConnectionBlock) ondisconnected;
 
 
 #pragma mark retrieving Lists of Peripherals
 -(NSArray *)retrieveConnectedPeripheralsWithServices:(NSArray *)serviceUUIDs NS_AVAILABLE(NA, 7_0);
+
 -(NSArray *)retrievePeriphearlsWithIdentifiers:(NSArray *)identifiers NS_AVAILABLE(NA, 7_0);
 
 

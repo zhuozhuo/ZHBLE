@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreBluetooth/CoreBluetooth.h>
 #import "ZHBLEBlocks.h"
+
 @interface ZHBLEPeripheral : NSObject
 @property(nonatomic, strong, readonly) CBPeripheral * peripheral;
 @property(nonatomic) NSArray * services;
@@ -22,31 +23,40 @@
 @property(nonatomic, copy) ZHPeripheralConnectionBlock onConnectionFinished;
 @property(nonatomic, copy) ZHPeripheralConnectionBlock onDisconnected;
 
+
+#pragma mark initial Methods
 -(instancetype)initWithPeripheral:(CBPeripheral *) peripheral;
 
 
 #pragma mark discovery services
 -(void)discoverServices:(NSArray *)serviceUUIDs onFinish:(ZHObjectChagedBlock)discoverFinished;
+
 - (void)discoverIncludedServices:(NSArray *)includedServiceUUIDs forService:(CBService *)service onFinish:(ZHSpecifiedServiceUpdatedBlock) finished;
+
 
 #pragma mark Discovering Characteristics and Characteristic Descriptors
 - (void)discoverCharacteristics:(NSArray *)characteristicUUIDs forService:(CBService *)service onFinish:(ZHSpecifiedServiceUpdatedBlock) onfinish;
+
 - (void)discoverDescriptorsForCharacteristic:(CBCharacteristic *)characteristic onFinish:(ZHCharacteristicChangeBlock) onfinish;
+
+
 #pragma mark Reading Characteristic and Characteristic Descriptor Values
 - (void)readValueForCharacteristic:(CBCharacteristic *)characteristic onFinish:(ZHCharacteristicChangeBlock) onUpdate;
+
 - (void)readValueForDescriptor:(CBDescriptor *)descriptor onFinish:(ZHDescriptorChangedBlock) onUpdate;
+
 
 #pragma mark Writing Characteristic and Characteristic Descriptor Values
 - (void)writeValue:(NSData *)data forCharacteristic:(CBCharacteristic *)characteristic type:(CBCharacteristicWriteType)type onFinish:(ZHCharacteristicChangeBlock) onfinish;
 
 - (void)writeValue:(NSData *)data forDescriptor:(CBDescriptor *)descriptor onFinish:(ZHDescriptorChangedBlock) onfinish;
 
-#pragma mark Setting Notifications for a Characteristic’s Value
 
+#pragma mark Setting Notifications for a Characteristic’s Value
 - (void)setNotifyValue:(BOOL)enabled forCharacteristic:(CBCharacteristic *)characteristic onUpdated:(ZHCharacteristicChangeBlock) onUpdated;
 
-#pragma mark ReadRSSI
 
+#pragma mark ReadRSSI
 - (void)readRSSIOnFinish:(ZHObjectChagedBlock) onUpdated;
 
 #pragma mark cleanup

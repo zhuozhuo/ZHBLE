@@ -10,15 +10,14 @@
 
 @implementation ZHStoredPeripherals
 + (void)initializeStorage {
-    
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSArray *devices = [userDefaults arrayForKey:@"storedPeripherals"];
     if (devices == nil) {
         [userDefaults setObject:@[] forKey:@"storedPeripherals"];
         [userDefaults synchronize];
     }
-    
 }
+
 
 + (NSArray *)genIdentifiers {
     NSMutableArray *result= [NSMutableArray new];
@@ -64,7 +63,6 @@
                         break;
                     }
                 }
-                
                 if (test) {
                     [devices addObject:uuidString];
                 }
@@ -73,13 +71,10 @@
         else {
             devices = [[NSMutableArray alloc] init];
             [devices addObject:uuidString];
-            
         }
-        
         [userDefaults setObject:devices forKey:@"storedPeripherals"];
         [userDefaults synchronize];
     }
-    
 }
 
 + (void)deleteUUID:(NSUUID *)UUID {

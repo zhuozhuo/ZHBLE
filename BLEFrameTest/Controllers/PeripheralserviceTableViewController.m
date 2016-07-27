@@ -19,17 +19,14 @@
 #pragma mark － LifeView cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"连接的设备Service";
-    
+    self.title = @"Service";
     self.tableView.tableFooterView = [[UIView alloc]init];
     self.characteristicArray = [NSMutableArray array];
     WEAKSELF;
-    
     if (self.connectedPeripheral) {
         [self.connectedPeripheral discoverServices:nil onFinish:^(NSError *error){
             weakSelf.serviceArray = [NSArray arrayWithArray:weakSelf.connectedPeripheral.services];
             [weakSelf.tableView reloadData];
-            
             for (CBService *service in weakSelf.serviceArray) {
                 [weakSelf retriveCharacteristicWithService:service];
             }
@@ -42,11 +39,6 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    NSString *string = [NSString stringWithFormat:@"Identifier:%@--Name:%@",[self.connectedPeripheral.identifier UUIDString],self.connectedPeripheral.name];
-    
-//    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Identifier" message:string  delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil, nil];
-//    [alertView show];
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -95,9 +87,8 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"peripheralServiceCell" forIndexPath:indexPath];
     NSArray *array = [self.characteristicArray objectAtIndex:indexPath.section];
     CBCharacteristic *characteristic = [array objectAtIndex:indexPath.row];
-    cell.textLabel.text = [@"characteristic:"stringByAppendingString:[characteristic.UUID UUIDString]];
+    cell.textLabel.text = [@"Characteristic:"stringByAppendingString:[characteristic.UUID UUIDString]];
     //cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
     return cell;
 }
 

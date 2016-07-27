@@ -41,39 +41,17 @@
         NSLog(@"222");
         
     }
-    
-//    [self.peripheral discoverDescriptorsForCharacteristic:self.characteristic onFinish:^(CBCharacteristic *characitristic, NSError *error){
-//        if (!error) {
-//            NSLog(@"discriptors:%@",characitristic.descriptors);
-//            NSArray *array = characitristic.descriptors;
-//            for (CBDescriptor *descriptor in array) {
-//                [self.peripheral readValueForDescriptor:descriptor onFinish:^(CBDescriptor *objc, NSError *error){
-//                    if (!error) {
-//                        NSLog(@"descriptorValue:%@",objc.value);
-//                        
-//                    }
-//                }];
-//            }
-//            
-//        }
-//    }];
-    
-    
     [self.infoTextView setTextAlignment:NSTextAlignmentCenter];
-    
-    
     CBCharacteristicProperties temProperties = self.characteristic.properties;
     NSString *string = @"";
      WEAKSELF;
     if (temProperties & CBCharacteristicPropertyNotify)//notify
     {
-     
         __block  NSMutableData *data = [[NSMutableData alloc]init];
         [data setLength:0];
         
         string =[string stringByAppendingString:@"CBCharacteristicPropertyNotify"];
         [self.peripheral setNotifyValue:YES forCharacteristic:self.characteristic onUpdated:^(CBCharacteristic *obj , NSError *error){
-            
             if (error) {
                 NSLog(@"error:%@",error);
             }
@@ -127,8 +105,6 @@
 
     }
     self.propertyLabel.text = string;
-    
-
 }
 
 

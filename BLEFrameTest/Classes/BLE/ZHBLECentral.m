@@ -49,15 +49,10 @@
     self.connectionFinishBlocks = [NSMutableDictionary dictionary];
     self.disconnectedBlocks     = [NSMutableDictionary dictionary];
     [ZHStoredPeripherals initializeStorage];//初始化存储
-    
-     
-
-    
 }
 
 -(CBCentralManager *)manager
 {
-  
     @synchronized(_manager){
         if (!_manager) {
             if (![CBCentralManager instancesRespondToSelector:@selector(initWithDelegate:queue:options:)]) {
@@ -66,7 +61,7 @@
             }else{
                 _manager = [[CBCentralManager alloc]initWithDelegate:self queue:self.queue options:self.initializedOptions];
             }
-
+            
         }
     }
     return _manager;
@@ -82,9 +77,6 @@
 {
     return self.manager.state;
 }
-
-
-
 
 
 #pragma mark -Scanning or stopping Scan of Peripheral
@@ -104,7 +96,6 @@
 
 
 #pragma mark － discoverPeripheral
-
 
 #pragma mark Establishing or cancel with peripherals
 -(void)connectPeripheral:(ZHBLEPeripheral *)peripheral options:(NSDictionary *)options onFinished:(ZHPeripheralConnectionBlock)finished onDisconnected:(ZHPeripheralConnectionBlock)onDisconnected
@@ -129,7 +120,7 @@
 {
     NSArray * tArray = [self.manager retrieveConnectedPeripheralsWithServices:serviceUUIDs];
     
-    //转换成自定义的peripherals
+    //Converting custom peripherals
     NSMutableArray *ZHPeripherals = [NSMutableArray arrayWithArray:tArray];
     for (CBPeripheral * peri in ZHPeripherals) {
         ZHBLEPeripheral *zhperi = peri.delegate;
@@ -145,8 +136,8 @@
 -(NSArray *)retrievePeriphearlsWithIdentifiers:(NSArray *)identifiers
 {
     NSArray * tArray = [self.manager retrievePeripheralsWithIdentifiers:identifiers];
-    //转换成自定义的peripherals
-        
+    
+    //Converting custom peripherals
     NSMutableArray *ZHPeripherals = [NSMutableArray array];
     for (CBPeripheral * peri in tArray) {
         ZHBLEPeripheral *zhperi = peri.delegate;
@@ -166,9 +157,9 @@
 {
     ZHBLEPeripheral *zhPeripheral = peripheral.delegate;
     if (!zhPeripheral) {
-       zhPeripheral = [[ZHBLEPeripheral alloc] initWithPeripheral:peripheral];
+        zhPeripheral = [[ZHBLEPeripheral alloc] initWithPeripheral:peripheral];
     }
-   // NSLog(@"advertisementData:%@",advertisementData);
+    // NSLog(@"advertisementData:%@",advertisementData);
     
     if (zhPeripheral && ![self.peripherals containsObject:peripheral]) {
         [self.peripherals addObject:zhPeripheral];
@@ -186,6 +177,7 @@
     ZHBLEPeripheral *thePeripheral = peripheral.delegate;
     if (thePeripheral && [self.connectingPeripherals containsObject:thePeripheral]) {
         ZHPeripheralConnectionBlock finish = self.connectionFinishBlocks[peripheral.identifier];
+        
         //remove it from connectiongPeripherals
         [self.connectingPeripherals removeObject:thePeripheral];
         [self.connectedPeripherals addObject:thePeripheral];
@@ -193,9 +185,9 @@
         ZHBLEManager *manager = [ZHBLEManager sharedZHBLEManager];
         manager.connectPeripheral = peripheral;
         
-        //存储到本地
+        //Stored to local
         [ZHStoredPeripherals saveUUID:peripheral.identifier];
-        
+
         if (finish) {
             finish(thePeripheral,nil);
             [self.connectionFinishBlocks removeObjectForKey:peripheral.identifier];
@@ -232,7 +224,7 @@
     if (thePeripheral && [self.connectedPeripherals containsObject:thePeripheral]) {
         ZHPeripheralConnectionBlock finish = self.disconnectedBlocks[peripheral.identifier];
         
-        //设置manager Peripheral 为空
+        //Manager Peripheral set is empty
         ZHBLEManager *manager = [ZHBLEManager sharedZHBLEManager];
         manager.connectPeripheral = nil;
         
@@ -291,15 +283,15 @@
             case CBCentralManagerStateUnauthorized:
             {
                 /* Tell user the app is not allowed. */
-              
+                
             }
-                  break;
+                break;
             case CBCentralManagerStateUnknown:
             {
                 /* Bad news, let's wait for another event. */
-               
+                
             }
-                 break;
+                break;
             case CBCentralManagerStateUnsupported:
                 break;
             default:
@@ -317,33 +309,30 @@
 -(void)filterBluetoothState
 {
     NSString *remindString = nil;
-        switch (self.state) {
-            case CBCentralManagerStatePoweredOn:
-                return;
-                
-            case CBCentralManagerStatePoweredOff:
-                remindString = @"请打开蓝牙";
-                break;
-            case CBCentralManagerStateUnknown:
-                remindString = @"蓝牙发送未知错位";
-                break;
-                
-            case CBCentralManagerStateResetting:
-                remindString = @"蓝牙正在重启,请稍等";
-                break;
-            case CBCentralManagerStateUnsupported:
-                remindString = @"手机不支持BlueTooth";
-                break;
-            case CBCentralManagerStateUnauthorized:
-                remindString = @"未被授权";
-                break;
-            default:
-                break;
-        }
-        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:remindString delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
-        [alertView show];
-    
-    
-    
+    switch (self.state) {
+        case CBCentralManagerStatePoweredOn:
+            return;
+            
+        case CBCentralManagerStatePoweredOff:
+            remindString = @"Please turn on the Bluetoolth";
+            break;
+        case CBCentralManagerStateUnknown:
+            remindString = @"Unknown error Bluetooth";
+            break;
+            
+        case CBCentralManagerStateResetting:
+            remindString = @"Bluetoolth is resetting";
+            break;
+        case CBCentralManagerStateUnsupported:
+            remindString = @"The device does not support Bluetooth";
+            break;
+        case CBCentralManagerStateUnauthorized:
+            remindString = @"Not authorized";
+            break;
+        default:
+            break;
+    }
+    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Remind" message:remindString delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+    [alertView show];
 }
 @end

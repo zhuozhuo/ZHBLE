@@ -15,7 +15,7 @@
 #import <CoreBluetooth/CoreBluetooth.h>
 @class ZHBLEPeripheral;
 
-//central manager
+//Central
 typedef void (^ZHCharacteristicChangeBlock)(CBCharacteristic *characteristic,NSError *error);
 typedef void (^ZHDescriptorChangedBlock)(CBDescriptor * descriptor, NSError * error);
 typedef void (^ZHSpecifiedServiceUpdatedBlock)(CBService *service, NSError *error);
@@ -25,7 +25,7 @@ typedef void (^ZHPeripheralUpdatedBlock)(ZHBLEPeripheral *peripheral,NSDictionar
 typedef void (^ZHPeripheralConnectionBlock)(ZHBLEPeripheral *peripheral, NSError*error);
 
 
-//peripheral manager
+//Peripheral
 typedef void (^ZHPeripheralManagerStatedChangedBlock)(NSDictionary *state);
 typedef void (^ZHCentralSubscriptionBlock)(CBCentral *central, CBCharacteristic *characteristic);
 typedef void (^ZhCentralReadRequestBlock)(CBATTRequest *readRequest);

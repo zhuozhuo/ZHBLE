@@ -178,10 +178,10 @@
 				9EC46A221D4764F300F3BBE0 /* Constant.h */,
 				9EC46A231D4764F300F3BBE0 /* DeviceListTableViewController.h */,
 				9EC46A241D4764F300F3BBE0 /* DeviceListTableViewController.m */,
-				9EC46A251D4764F300F3BBE0 /* InfoViewController.h */,
-				9EC46A261D4764F300F3BBE0 /* InfoViewController.m */,
 				9EC46A271D4764F300F3BBE0 /* PeripheralserviceTableViewController.h */,
 				9EC46A281D4764F300F3BBE0 /* PeripheralserviceTableViewController.m */,
+				9EC46A251D4764F300F3BBE0 /* InfoViewController.h */,
+				9EC46A261D4764F300F3BBE0 /* InfoViewController.m */,
 				9EC46A291D4764F300F3BBE0 /* ViewController.h */,
 				9EC46A2A1D4764F300F3BBE0 /* ViewController.m */,
 			);

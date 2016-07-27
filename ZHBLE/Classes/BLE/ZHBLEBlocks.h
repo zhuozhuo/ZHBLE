@@ -1,13 +1,13 @@
 //
 //  ZHBLEBlocks.h
-//  BLE_IOS
+//  BLE_iOS
 //
 //  Created by aimoke on 15/7/16.
 //  Copyright (c) 2015年 zhuo. All rights reserved.
 //
 
-#ifndef BLE_IOS_ZHBLEBlocks_h
-#define BLE_IOS_ZHBLEBlocks_h
+#ifndef BLE_iOS_ZHBLEBlocks_h
+#define BLE_iOS_ZHBLEBlocks_h
 
 
 #endif

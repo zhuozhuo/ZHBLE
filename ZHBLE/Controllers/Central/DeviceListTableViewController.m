@@ -83,8 +83,8 @@
         [weakSelf addPeripheralToConnectedDevice:peripheral];
     }];
     
-    CBUUID *uuid = [CBUUID UUIDWithString:TRANSFER_SERVICE_UUID];
-    NSArray *uuids = @[uuid];
+    //CBUUID *uuid = [CBUUID UUIDWithString:TRANSFER_SERVICE_UUID];// You can use it test custom services
+    NSArray *uuids = nil;//@[uuid];
     
     [self.central scanPeripheralWithServices:uuids options:@{CBCentralManagerScanOptionAllowDuplicatesKey: @(YES)} onUpdated:^(ZHBLEPeripheral *peripheral,NSDictionary *data){
         if (peripheral) {

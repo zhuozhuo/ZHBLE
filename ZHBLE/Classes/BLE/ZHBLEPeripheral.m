@@ -1,6 +1,6 @@
 //
 //  ZHBLEPeripheral.m
-//  BLE_IOS
+//  BLE_iOS
 //
 //  Created by aimoke on 15/7/16.
 //  Copyright (c) 2015年 zhuo. All rights reserved.
@@ -69,10 +69,10 @@
             self.identifier = _peripheral.identifier;
         }
         @catch (NSException *exception) {
-            //ios 6
+            //iOS 6
             NSString *uuidStr = _peripheral.identifier.UUIDString;
             self.identifier = [[NSUUID alloc]initWithUUIDString:uuidStr];
-            NSLog(@"ios6 identifier");
+            NSLog(@"iOS6 identifier");
         }
         @finally {
             

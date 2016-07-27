@@ -1,6 +1,6 @@
 //
 //  ZHStoredPeripherals.m
-//  BLE_IOS
+//  BLE_iOS
 //
 //  Created by aimoke on 15/7/16.
 //  Copyright (c) 2015年 zhuo. All rights reserved.

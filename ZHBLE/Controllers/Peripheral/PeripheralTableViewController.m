@@ -131,7 +131,6 @@
     if (self.transferService) {
         [self.peripheralManager removeService:self.transferService];
     }
-    WEAKSELF;
     NSString *temAdvertisingString = @"TestValue";
     NSData *temAdvertisingData = [temAdvertisingString dataUsingEncoding:NSUTF8StringEncoding];
     switch (indexPath.row) {

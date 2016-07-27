@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ZHBLEPeripheral.h"
+#import "ZHBLE.h"
 
 @interface PeripheralserviceTableViewController : UITableViewController
 

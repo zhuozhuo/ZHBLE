@@ -81,6 +81,7 @@
 		9EC46AC81D48D54300F3BBE0 /* screenshot1.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screenshot1.PNG; sourceTree = "<group>"; };
 		9EC46AC91D48D54300F3BBE0 /* screenshot2.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screenshot2.PNG; sourceTree = "<group>"; };
 		9EC46ACA1D48D54300F3BBE0 /* screenshot3.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screenshot3.PNG; sourceTree = "<group>"; };
+		9EC46ACF1D48D9CF00F3BBE0 /* ZHBLE.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHBLE.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -252,6 +253,7 @@
 		9EC46AA01D48BE5900F3BBE0 /* ZHBLE */ = {
 			isa = PBXGroup;
 			children = (
+				9EC46ACF1D48D9CF00F3BBE0 /* ZHBLE.h */,
 				9EC46AA11D48BE5900F3BBE0 /* ZHBLEBlocks.h */,
 				9EC46AA21D48BE5900F3BBE0 /* ZHBLECentral.h */,
 				9EC46AA31D48BE5900F3BBE0 /* ZHBLECentral.m */,

@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreBluetooth/CoreBluetooth.h>
-#import "ZHBLEPeripheral.h"
-#import "ZHBLEPeripheralManager.h"
+#import "ZHBLE.h"
+
 
 @interface PeripheralTableViewController : UITableViewController
 @property(nonatomic ,strong) ZHBLEPeripheralManager *peripheralManager;

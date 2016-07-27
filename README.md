@@ -5,6 +5,96 @@ ZHBLE 使用Block回调方式，旨在使调用系统CoreBluetooth库函数简�
 
 ![Screenshot2][img2] &nbsp;&nbsp; ![Screenshot3][img3]
 
+##Features
+* 基于原生CoreBluetooth,回调函数全部封装成Block回调方式，使调用相关函数简洁明了。
+* 设备作为Central端和Peripheral端都有封装。
+* 采用工厂模式和Block方法结合使得初始化和函数调用更容易。
+
+
+## Design Goals
+简单快捷方便的使用Bluetooth。
+
+
+## Requirements
+
+* iOS 7.0+
+* ARC
+* CoreBluetooth.framework
+
+##Introduce
+[类名](https://github.com/zhuozhuo/BLE/tree/master/ZHBLE/Classes/ZHBLE) | 作用及用法
+----- | -----
+[ZHBLECentral](https://github.com/zhuozhuo/BLE/blob/master/ZHBLE/Classes/ZHBLE/ZHBLECentral.h) | 设备作为Central端的相关属性和操作例如:初始化Central,扫描,连接,检索设备等。
+[ZHBLEPeripheral](https://github.com/zhuozhuo/BLE/blob/master/ZHBLE/Classes/ZHBLE/ZHBLEPeripheral.h) | 对Peripheral端的相关操作例如:发现服务和特征,监听，读写等操作。
+[ZHBLEPeripheralManager](https://github.com/zhuozhuo/BLE/blob/master/ZHBLE/Classes/ZHBLE/ZHBLEPeripheralManager.h) | 设备作为Peripheral端时的相关操作例如:CBPeripheralManager的初始化,广播,添加服务，发送数据等。
+[ZHBLEStoredPeripherals](https://github.com/zhuozhuo/BLE/blob/master/ZHBLE/Classes/ZHBLE/ZHBLEStoredPeripherals.h) | 设备本地缓存相关操作
+[ZHBLEManager](https://github.com/zhuozhuo/BLE/blob/master/ZHBLE/Classes/ZHBLE/ZHBLEManager.h) | 快捷访问最近连接的设备
+[ZHBLEBlocks](https://github.com/zhuozhuo/BLE/blob/master/ZHBLE/Classes/ZHBLE/ZHBLEBlocks.h) | 所有Block定义
+
+## Usage
+### Cocoapods
+
+### 复制文件夹ZHBLE至你的工程中
+
+### Central
+```objective-c
+#import "ZHBLE.h"
+
+self.central = [ZHBLECentral sharedZHBLECentral];
+
+//扫描
+
+[self.central scanPeripheralWithServices:uuids options:@{CBCentralManagerScanOptionAllowDuplicatesKey: @(YES)} onUpdated:^(ZHBLEPeripheral *peripheral,NSDictionary *data){
+        if (peripheral) {
+            
+            //Do Something
+        }
+       
+    }];
+
+//连接
+
+[self.central connectPeripheral:peripheral options:nil onFinished:^(ZHBLEPeripheral *peripheral, NSError *error){
+}onDisconnected:^(ZHBLEPeripheral *peripheral, NSError *error){
+                    
+        });
+    }];
+
+```
+
+## Peripheral
+
+```objective-c
+#import "ZHBLE.h"
+
+
+self.peripheralManager = [ZHBLEPeripheralManager sharedZHBLEPeripheralManager];
+
+//广播
+
+ CBUUID *temUUID = [CBUUID UUIDWithString:@"902DD287-69BE-4ADD-AACF-AA3C24D83B66"];
+        NSArray *temUUIDArray = [NSArray arrayWithObjects:temUUID, nil];
+        NSDictionary *temServiceDic = @{CBAdvertisementDataServiceUUIDsKey:temUUIDArray};
+        [self.peripheralManager startAdvertising:temServiceDic onStarted:^(NSError *error){
+                       
+        }];
+
+
+//添加服务
+[self.peripheralManager addService:_transferService onFinish:^(CBService *service,NSError *error){
+        
+            }];
+            
+            
+
+```
+
+
+
+
+## License
+
+This code is distributed under the terms and conditions of the [MIT license](LICENSE).
 
 
 
@@ -17,38 +107,7 @@ ZHBLE 使用Block回调方式，旨在使调用系统CoreBluetooth库函数简�
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-[img0]:https://raw.githubusercontent.com/jessesquires/JSQMessagesViewController/develop/Screenshots/screenshot0.png
-[img1]:https://raw.githubusercontent.com/jessesquires/JSQMessagesViewController/develop/Screenshots/screenshot1.png
-[img2]:https://raw.githubusercontent.com/jessesquires/JSQMessagesViewController/develop/Screenshots/screenshot2.png
-[img3]:https://raw.githubusercontent.com/jessesquires/JSQMessagesViewController/develop/Screenshots/screenshot3.png
+[img0]:https://github.com/zhuozhuo/BLE/blob/master/ZHBLE/Screenshots/screenshot0.PNG
+[img1]:https://github.com/zhuozhuo/BLE/blob/master/ZHBLE/Screenshots/screenshot1.PNG
+[img2]:https://github.com/zhuozhuo/BLE/blob/master/ZHBLE/Screenshots/screenshot2.PNG
+[img3]:https://github.com/zhuozhuo/BLE/blob/master/ZHBLE/Screenshots/screenshot3.PNG

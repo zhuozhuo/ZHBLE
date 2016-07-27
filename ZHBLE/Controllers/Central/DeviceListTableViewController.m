@@ -32,7 +32,7 @@
     {
         opts = @{CBCentralManagerOptionShowPowerAlertKey:@YES};
     }
-    self.central = [[ZHBLECentral alloc]initWithQueue:nil options:opts];
+    self.central = [ZHBLECentral sharedZHBLECentral];
     NSArray *storedArray = [ZHBLEStoredPeripherals genIdentifiers];
     NSLog(@"storedIdentifier:%@",storedArray);
     NSArray *peripherayArray = nil;

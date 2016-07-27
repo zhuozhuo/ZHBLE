@@ -9,10 +9,10 @@
 #import <UIKit/UIKit.h>
 #import <CoreBluetooth/CoreBluetooth.h>
 #import "ZHBLEPeripheral.h"
-#import "ZHPeripheralManager.h"
+#import "ZHBLEPeripheralManager.h"
 
 @interface PeripheralTableViewController : UITableViewController
-@property(nonatomic ,strong) ZHPeripheralManager *peripheralManager;
+@property(nonatomic ,strong) ZHBLEPeripheralManager *peripheralManager;
 @property(nonatomic ,strong) CBCentral *conntectedCentral;
 @property(nonatomic ,strong) NSMutableDictionary *subscribedCharacteristicDic;
 

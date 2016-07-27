@@ -8,10 +8,10 @@
 
 
 #import <UIKit/UIKit.h>
-#import "ZHPeripheralManager.h"
+#import "ZHBLEPeripheralManager.h"
 #import "ZHBLECentral.h"
 
-@interface ZHPeripheralManager()<CBPeripheralManagerDelegate>
+@interface ZHBLEPeripheralManager()<CBPeripheralManagerDelegate>
 
 
 @property (nonatomic, strong) NSMutableDictionary * serviceAddingBlocks;
@@ -21,13 +21,13 @@
 @property (nonatomic, strong)dispatch_queue_t queue;
 
 @end
-@implementation ZHPeripheralManager
+@implementation ZHBLEPeripheralManager
 
 #pragma mark - INIT Methods
 
-+(ZHPeripheralManager *)sharedZHPeripheralManager
++(ZHBLEPeripheralManager *)sharedZHBLEPeripheralManager
 {
-   static  ZHPeripheralManager *_blePeripheralManagerFactory = nil;
+   static  ZHBLEPeripheralManager *_blePeripheralManagerFactory = nil;
     static dispatch_once_t oncePredicate;
     dispatch_once(&oncePredicate,^{
         
@@ -42,7 +42,7 @@
 //        const char *queueName = [daStr UTF8String];
 //        dispatch_queue_t myQueue = dispatch_queue_create(queueName, DISPATCH_QUEUE_PRIORITY_DEFAULT);
         
-        _blePeripheralManagerFactory = [[ZHPeripheralManager alloc]initWithQueue:nil options:nil];
+        _blePeripheralManagerFactory = [[ZHBLEPeripheralManager alloc]initWithQueue:nil options:nil];
     });
     return _blePeripheralManagerFactory;
     

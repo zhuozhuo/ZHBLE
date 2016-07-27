@@ -6,9 +6,9 @@
 //  Copyright (c) 2015年 zhuo. All rights reserved.
 //
 
-#import "ZHStoredPeripherals.h"
+#import "ZHBLEStoredPeripherals.h"
 
-@implementation ZHStoredPeripherals
+@implementation ZHBLEStoredPeripherals
 + (void)initializeStorage {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSArray *devices = [userDefaults arrayForKey:@"storedPeripherals"];

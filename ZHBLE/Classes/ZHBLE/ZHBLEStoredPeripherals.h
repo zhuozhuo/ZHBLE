@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreBluetooth/CoreBluetooth.h>
 
-@interface ZHStoredPeripherals : NSObject
+@interface ZHBLEStoredPeripherals : NSObject
 
 + (void)initializeStorage;
 

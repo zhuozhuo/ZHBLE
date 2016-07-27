@@ -12,7 +12,7 @@
 #import "DeviceListTableViewController.h"
 #import "peripheralserviceTableViewController.h"
 #import "Constant.h"
-#import "ZHStoredPeripherals.h"
+#import "ZHBLEStoredPeripherals.h"
 
 @interface DeviceListTableViewController ()
 
@@ -33,7 +33,7 @@
         opts = @{CBCentralManagerOptionShowPowerAlertKey:@YES};
     }
     self.central = [[ZHBLECentral alloc]initWithQueue:nil options:opts];
-    NSArray *storedArray = [ZHStoredPeripherals genIdentifiers];
+    NSArray *storedArray = [ZHBLEStoredPeripherals genIdentifiers];
     NSLog(@"storedIdentifier:%@",storedArray);
     NSArray *peripherayArray = nil;
     if (storedArray.count>0) {
@@ -72,7 +72,7 @@
 -(void)scan
 {
     WEAKSELF;
-    NSArray *identifiers = [ZHStoredPeripherals genIdentifiers];
+    NSArray *identifiers = [ZHBLEStoredPeripherals genIdentifiers];
     NSLog(@"identifiers:%@",identifiers);
 
     NSArray *conectedPeripherals = [self.central retrievePeriphearlsWithIdentifiers:identifiers];
@@ -269,7 +269,7 @@
         });
     }onDisconnected:^(ZHBLEPeripheral *peripheral, NSError *error){
         [weakSelf deletePeripheralInConnectedDevice:peripheral];
-        [ZHStoredPeripherals deleteUUID:peripheral.identifier];
+        [ZHBLEStoredPeripherals deleteUUID:peripheral.identifier];
         NSString *errorString = [NSString stringWithFormat:@"%@",error];
         dispatch_async(dispatch_get_main_queue(), ^{
             UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Disconnected" message:errorString delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];

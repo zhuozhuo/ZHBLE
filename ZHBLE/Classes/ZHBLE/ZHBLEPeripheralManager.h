@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "ZHBLEBlocks.h"
 
-@interface ZHPeripheralManager : NSObject
+@interface ZHBLEPeripheralManager : NSObject
 @property (nonatomic, readonly) BOOL isAdvertizing;
 @property (nonatomic, readonly) CBPeripheralManagerState state;
 @property (nonatomic, copy) ZHObjectChagedBlock onStateUpdated;
@@ -25,7 +25,7 @@
 @property (nonatomic, strong) CBPeripheralManager * peripheralManager;
 
 #pragma mark INIT Methods
-+(ZHPeripheralManager *)sharedZHPeripheralManager;
++(ZHBLEPeripheralManager *)sharedZHBLEPeripheralManager;
 
 
 - (instancetype)initWithQueue:(dispatch_queue_t)queue;

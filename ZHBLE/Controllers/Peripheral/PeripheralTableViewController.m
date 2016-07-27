@@ -27,7 +27,7 @@
     self.title = @"Peripheral";
     titles = @[@"OnlyRead",@"Notify",@"Write",@"NotifyAndWrite",@"ReadAndWrite"];
     
-    self.peripheralManager = [ZHPeripheralManager sharedZHPeripheralManager];
+    self.peripheralManager = [ZHBLEPeripheralManager sharedZHBLEPeripheralManager];
     self.subscribedCharacteristicDic = [NSMutableDictionary dictionary];
     [self initialDataInteractBlock];
     

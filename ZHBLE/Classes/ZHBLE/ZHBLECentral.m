@@ -9,7 +9,7 @@
 
 #import "ZHBLECentral.h"
 #import <UIKit/UIKit.h>
-#import "ZHStoredPeripherals.h"
+#import "ZHBLEStoredPeripherals.h"
 #import "ZHBLEPeripheral.h"
 #import "ZHBLEManager.h"
 
@@ -66,7 +66,7 @@
     self.connectedPeripherals   = [NSMutableArray array];
     self.connectionFinishBlocks = [NSMutableDictionary dictionary];
     self.disconnectedBlocks     = [NSMutableDictionary dictionary];
-    [ZHStoredPeripherals initializeStorage];//初始化存储
+    [ZHBLEStoredPeripherals initializeStorage];//初始化存储
 }
 
 -(CBCentralManager *)manager
@@ -204,7 +204,7 @@
         manager.connectPeripheral = peripheral;
         
         //Stored to local
-        [ZHStoredPeripherals saveUUID:peripheral.identifier];
+        [ZHBLEStoredPeripherals saveUUID:peripheral.identifier];
 
         if (finish) {
             finish(thePeripheral,nil);

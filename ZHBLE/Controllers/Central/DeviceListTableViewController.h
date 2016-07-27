@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ZHBLECentral.h"
-#import "ZHStoredPeripherals.h"
+#import "ZHBLEStoredPeripherals.h"
 #import "ZHBLEPeripheral.h"
 @interface DeviceListTableViewController : UITableViewController
 @property(nonatomic, strong)NSMutableArray *connectedDeviceArray;

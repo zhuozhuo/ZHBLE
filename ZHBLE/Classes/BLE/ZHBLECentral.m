@@ -20,6 +20,24 @@
 #pragma mark -Life cycle
 @implementation ZHBLECentral
 
++(ZHBLECentral *)sharedZHBLECentral
+{
+    static ZHBLECentral *_bleCentralFactory = nil;
+    static dispatch_once_t oncePredicate;
+    dispatch_once(&oncePredicate,^{
+        NSDictionary * opts = nil;
+        if ([[UIDevice currentDevice].systemVersion floatValue]>=7.0)
+        {
+            opts = @{CBCentralManagerOptionShowPowerAlertKey:@YES};
+        }
+        
+        _bleCentralFactory = [[ZHBLECentral alloc]initWithQueue:nil options:opts];
+    });
+    return _bleCentralFactory;
+    
+}
+
+
 -(instancetype)initWithQueue:(dispatch_queue_t)queue
 {
     self = [super init];

@@ -1,6 +1,6 @@
 //
-//  BLEFrameTestTests.m
-//  BLEFrameTestTests
+//  ZHBLETests.m
+//  ZHBLETests
 //
 //  Created by aimoke on 15/7/17.
 //  Copyright (c) 2015年 zhuo. All rights reserved.
@@ -9,11 +9,11 @@
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
 
-@interface BLEFrameTestTests : XCTestCase
+@interface ZHBLETests : XCTestCase
 
 @end
 
-@implementation BLEFrameTestTests
+@implementation ZHBLETests
 
 - (void)setUp {
     [super setUp];

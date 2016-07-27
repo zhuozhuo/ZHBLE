@@ -1,6 +1,6 @@
 //
 //  infoViewController.m
-//  BLEFrameTest
+//  ZHBLE
 //
 //  Created by aimoke on 15/7/20.
 //  Copyright (c) 2015年 zhuo. All rights reserved.
@@ -34,17 +34,14 @@
 #pragma mark － public Interface
 -(void)readData
 {
-    if (!self.peripheral) {
-        NSLog(@"111");
-    }
-    if (!self.characteristic) {
-        NSLog(@"222");
-        
-    }
+    
+    NSAssert(self.peripheral !=nil, @"peripheral is nil");
+    NSAssert(self.characteristic !=nil, @"characteristic");
+    
     [self.infoTextView setTextAlignment:NSTextAlignmentCenter];
     CBCharacteristicProperties temProperties = self.characteristic.properties;
     NSString *string = @"";
-     WEAKSELF;
+    WEAKSELF;
     if (temProperties & CBCharacteristicPropertyNotify)//notify
     {
         __block  NSMutableData *data = [[NSMutableData alloc]init];
@@ -53,7 +50,7 @@
         string =[string stringByAppendingString:@"CBCharacteristicPropertyNotify"];
         [self.peripheral setNotifyValue:YES forCharacteristic:self.characteristic onUpdated:^(CBCharacteristic *obj , NSError *error){
             if (error) {
-                NSLog(@"error:%@",error);
+                NSLog(@"Error:%@",error);
             }
             [data appendData:obj.value];
             NSString *temText = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
@@ -96,10 +93,10 @@
         [self.peripheral writeValue:temData forCharacteristic:self.characteristic type:CBCharacteristicWriteWithResponse onFinish:^(CBCharacteristic *obj, NSError *error){
             NSString *temErrorString = nil;
             if (!error) {
-                temErrorString = @"写入成功";
+                temErrorString = @"Write success";
             }else
-                temErrorString = [NSString stringWithFormat:@"white data Error :%@",[error localizedDescription]];
-            UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:temErrorString delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
+                temErrorString = [NSString stringWithFormat:@"Write data Error :%@",[error localizedDescription]];
+            UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Remind" message:temErrorString delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
             [alertView show];
         }];
 

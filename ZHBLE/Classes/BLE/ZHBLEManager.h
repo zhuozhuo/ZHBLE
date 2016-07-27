@@ -1,6 +1,6 @@
 //
 //  ZHBLEManager.h
-//  BLEFrameTest
+//  ZHBLE
 //
 //  Created by aimoke on 15/8/31.
 //  Copyright (c) 2015年 zhuo. All rights reserved.

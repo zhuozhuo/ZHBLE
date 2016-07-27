@@ -1,13 +1,13 @@
 //
 //  constant.h
-//  BLEFrameTest
+//  ZHBLE
 //
 //  Created by aimoke on 15/7/20.
 //  Copyright (c) 2015年 zhuo. All rights reserved.
 //
 
-#ifndef BLEFrameTest_constant_h
-#define BLEFrameTest_constant_h
+#ifndef ZHBLE_constant_h
+#define ZHBLE_constant_h
 
 
 #endif

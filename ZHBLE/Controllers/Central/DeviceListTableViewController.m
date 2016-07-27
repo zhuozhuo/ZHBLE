@@ -1,6 +1,6 @@
 //
 //  deviceListTableViewController.m
-//  BLEFrameTest
+//  ZHBLE
 //
 //  Created by aimoke on 15/7/17.
 //  Copyright (c) 2015年 zhuo. All rights reserved.
@@ -24,24 +24,19 @@
 #pragma mark - ViewLife cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"扫描设备";
+    self.title = @"Scan devices";
     
     self.tableView.tableFooterView = [[UIView alloc]init];
     NSDictionary * opts = nil;
     if ([[UIDevice currentDevice].systemVersion floatValue]>=7.0)
     {
-        //DebugLog(@"%f",[[UIDevice currentDevice].systemVersion floatValue]);
         opts = @{CBCentralManagerOptionShowPowerAlertKey:@YES};
     }
     self.central = [[ZHBLECentral alloc]initWithQueue:nil options:opts];
-    
     NSArray *storedArray = [ZHStoredPeripherals genIdentifiers];
-    NSLog(@"array:%@",storedArray);
-    
     NSArray *peripherayArray = nil;
     if (storedArray.count>0) {
        peripherayArray = [self.central retrievePeriphearlsWithIdentifiers:storedArray];
-        
     }
     self.connectedDeviceArray = [NSMutableArray arrayWithArray:peripherayArray];
     self.findDeviceArray = [NSMutableArray array];
@@ -50,9 +45,7 @@
         self.central.onStateChanged = ^(NSError *error){
             [weakSelf scan];
         };
-
     }
-    
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -78,16 +71,11 @@
 -(void)scan
 {
     WEAKSELF;
-    NSUUID *uuid = [[NSUUID alloc] initWithUUIDString:TRANSFER_CHARACTERISTIC_UUID];
     NSArray *identifiers = [ZHStoredPeripherals genIdentifiers];
     NSLog(@"identifiers:%@",identifiers);
-    
-//    NSArray *serviceConnectedPeripheral = [self.central retrieveConnectedPeripheralsWithServices:@[[CBUUID UUIDWithString:@"7905F431-B5CE-4E99-A40F-4B1E122D00D0"]]];
-//    
-//    NSLog(@"serviceConnectedPeripheral:%@",serviceConnectedPeripheral);
-    
+
     NSArray *conectedPeripherals = [self.central retrievePeriphearlsWithIdentifiers:identifiers];
-    NSLog(@"已经连上的peripheral:%@",conectedPeripherals);
+    NSLog(@"have connceted peripheral:%@",conectedPeripherals);
     
     [conectedPeripherals enumerateObjectsUsingBlock:^(id obj, NSUInteger index, BOOL *stop){
         ZHBLEPeripheral *peripheral = obj;
@@ -105,12 +93,9 @@
 }
 
 
-
-
 -(void)addPeripheralToFindDevice:(ZHBLEPeripheral *)peripheral
 {
     NSAssert(peripheral !=nil, @"peripheral can not nil");
-    
     for (ZHBLEPeripheral *ZHBlePeripheral in self.findDeviceArray) {
         if ([[peripheral.identifier UUIDString] isEqualToString:[ZHBlePeripheral.identifier UUIDString]]) {
             return;
@@ -121,8 +106,6 @@
             return;
         }
     }
-
-    
     [self.findDeviceArray addObject:peripheral];
     [self.tableView reloadData];
     
@@ -140,6 +123,7 @@
     }
    
 }
+
 
 -(void)addPeripheralToConnectedDevice:(ZHBLEPeripheral *)peripheral
 {
@@ -204,14 +188,7 @@
         case 0:
         {
             peripherial = [self.connectedDeviceArray objectAtIndex:indexPath.row];
-            cell.detailTextLabel.text = @"已连接";
-            
-            //TODO: 判断是否为唯一已经连接上的手表
-            
-//            if ([[peripherial.identifier UUIDString] isEqualToString: [self.connectedPeripheral.identifier UUIDString]]) {
-//                cell.detailTextLabel.text = @"已连接";
-//            }else
-//                cell.detailTextLabel.text = @"未连接";
+            cell.detailTextLabel.text = @"Connected";
         }
             break;
         case 1:
@@ -237,10 +214,10 @@
 {
     switch (section) {
         case 0:
-            return @"我的设备";
+            return @"My devices";
             break;
         case 1:
-            return  @"其他设备";
+            return  @"Other devices";
             break;
             
         default:
@@ -279,7 +256,6 @@
         [weakSelf deletePeripheralInFindDevice:peripheral];
         [weakSelf addPeripheralToConnectedDevice:peripheral];
         [weakSelf pushWithPeripheral:peripheral];
-        NSLog(@"广播的服务:%@",peripheral.peripheral.services);
         [peripheral.peripheral.services enumerateObjectsUsingBlock:^(id obj, NSUInteger index, BOOL *stop){
             CBService *service = obj;
             NSLog(@"serviceUUID:%@",[service.UUID UUIDString]);
@@ -288,7 +264,7 @@
         [self.tableView reloadData];
     }onDisconnected:^(ZHBLEPeripheral *peripheral, NSError *error){
         NSString *errorString = [NSString stringWithFormat:@"%@",error];
-        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"断开提示" message:errorString delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Disconnected" message:errorString delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [alertView show];
         
         
@@ -298,7 +274,6 @@
     }];
 
 }
-
 
 
 #pragma mark - Push

@@ -30,6 +30,8 @@
 @property (nonatomic, strong) NSMutableDictionary * connectionFinishBlocks;
 
 #pragma mark initial Methods
++(ZHBLECentral *)sharedZHBLECentral;
+
 -(instancetype)initWithQueue:(dispatch_queue_t)queue;
 
 -(instancetype)initWithQueue:(dispatch_queue_t)queue options:(NSDictionary *)options;

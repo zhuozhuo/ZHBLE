@@ -108,7 +108,8 @@ This code is distributed under the terms and conditions of the [MIT license](LIC
 
 
 
-[img0]:https://github.com/zhuozhuo/BLE/blob/master/ZHBLE/Screenshots/screenshot0.PNG
-[img1]:https://github.com/zhuozhuo/BLE/blob/master/ZHBLE/Screenshots/screenshot1.PNG
-[img2]:https://github.com/zhuozhuo/BLE/blob/master/ZHBLE/Screenshots/screenshot2.PNG
-[img3]:https://github.com/zhuozhuo/BLE/blob/master/ZHBLE/Screenshots/screenshot3.PNG
+
+[img0]:https://github.com/zhuozhuo/ZHBLE/blob/master/Demo/ZHBLE/Screenshots/screenshot0.png
+[img1]:https://github.com/zhuozhuo/ZHBLE/blob/master/Demo/ZHBLE/Screenshots/screenshot1.png
+[img2]:https://github.com/zhuozhuo/ZHBLE/blob/master/Demo/ZHBLE/Screenshots/screenshot2.png
+[img3]:https://github.com/zhuozhuo/ZHBLE/blob/master/Demo/ZHBLE/Screenshots/screenshot3.png

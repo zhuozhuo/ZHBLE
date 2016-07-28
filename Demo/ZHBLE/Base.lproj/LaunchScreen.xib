@@ -12,15 +12,13 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ZHBLE.png" translatesAutoresizingMaskIntoConstraints="NO" id="ELK-J8-4wi">
-                    <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
+                    <rect key="frame" x="210" y="210" width="60" height="60"/>
                 </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="ELK-J8-4wi" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="63K-9a-8za"/>
-                <constraint firstAttribute="trailing" secondItem="ELK-J8-4wi" secondAttribute="trailing" id="Ucn-F7-W7l"/>
-                <constraint firstItem="ELK-J8-4wi" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="VQX-aT-79c"/>
-                <constraint firstAttribute="bottom" secondItem="ELK-J8-4wi" secondAttribute="bottom" id="joX-lk-FDe"/>
+                <constraint firstItem="ELK-J8-4wi" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Vxx-pd-c7O"/>
+                <constraint firstItem="ELK-J8-4wi" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="q4k-dF-LhM"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -28,6 +26,6 @@
         </view>
     </objects>
     <resources>
-        <image name="ZHBLE.png" width="1024" height="1024"/>
+        <image name="ZHBLE.png" width="60" height="60"/>
     </resources>
 </document>

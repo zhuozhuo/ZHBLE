@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "9E34E1AF1B58AE0A009C1867"
-               BuildableName = "BLE.app"
+               BuildableName = "ZHBLE.app"
                BlueprintName = "ZHBLE"
                ReferencedContainer = "container:ZHBLE.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9E34E1AF1B58AE0A009C1867"
-            BuildableName = "BLE.app"
+            BuildableName = "ZHBLE.app"
             BlueprintName = "ZHBLE"
             ReferencedContainer = "container:ZHBLE.xcodeproj">
          </BuildableReference>
@@ -66,7 +66,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9E34E1AF1B58AE0A009C1867"
-            BuildableName = "BLE.app"
+            BuildableName = "ZHBLE.app"
             BlueprintName = "ZHBLE"
             ReferencedContainer = "container:ZHBLE.xcodeproj">
          </BuildableReference>
@@ -85,7 +85,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9E34E1AF1B58AE0A009C1867"
-            BuildableName = "BLE.app"
+            BuildableName = "ZHBLE.app"
             BlueprintName = "ZHBLE"
             ReferencedContainer = "container:ZHBLE.xcodeproj">
          </BuildableReference>

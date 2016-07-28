@@ -6,7 +6,6 @@
 //  Copyright © 2016年 zhuo. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 #import "ZHBLECentral.h"
 #import "ZHBLEManager.h"
 #import "ZHBLEPeripheral.h"

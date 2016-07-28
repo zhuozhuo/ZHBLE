@@ -5,7 +5,7 @@ ZHBLE 使用Block回调方式，旨在使调用系统CoreBluetooth库简单明�
 
 ![Screenshot2][img2] &nbsp;&nbsp; ![Screenshot3][img3]
 
-## [English README]()
+## [English README LINK](https://github.com/zhuozhuo/ZHBLE/blob/master/README_EN.md)
 
 ##Features
 * 基于原生CoreBluetooth,回调函数全部封装成Block方式，使调用相关函数简洁明了。

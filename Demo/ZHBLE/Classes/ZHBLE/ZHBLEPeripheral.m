@@ -9,7 +9,7 @@
 #import "ZHBLEPeripheral.h"
 @interface ZHBLEPeripheral()<CBPeripheralDelegate>
 @property (nonatomic, copy)   ZHObjectChagedBlock didFinishServiceDiscovery;
-@property (nonatomic, copy)   ZHObjectChagedBlock rssiUpdated;
+@property (nonatomic, copy)   ZHPeripheralUpdateRSSIBlock rssiUpdated;
 @property (nonatomic, strong) NSMutableDictionary * servicesFindingIncludeService; //callbacks for finding included Services of specified Service
 @property (nonatomic, strong) NSMutableDictionary * characteristicsDiscoveredBlocks; //callbacks for finding Characteristics
 @property (nonatomic, strong) NSMutableDictionary * descriptorDiscoveredBlocks;
@@ -84,7 +84,11 @@
 -(NSNumber *)RSSI
 {
     if (!_RSSI) {
-        self.RSSI = self.peripheral.RSSI;
+        if  (__IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_8_0)
+            self.RSSI = self.peripheral.RSSI;
+        else{
+            [self readRSSIOnFinish:nil];
+        }
     }
     return _RSSI;
 }
@@ -185,7 +189,7 @@
 
 
 #pragma mark ReadRSSI
--(void)readRSSIOnFinish:(ZHObjectChagedBlock)onUpdated
+-(void)readRSSIOnFinish:(ZHPeripheralUpdateRSSIBlock)onUpdated
 {
     self.rssiUpdated = onUpdated;
     [_peripheral readRSSI];
@@ -253,8 +257,6 @@
             onupdate(characteristic,error);
             [_characteristicsValueUpdatedBlocks removeObjectForKey:characteristic.UUID];
         }else{
-            
-            //notification
             onupdate = self.characteristicsNotifyBlocks[characteristic.UUID];
             if (onupdate) {
                 onupdate(characteristic,error);
@@ -294,15 +296,26 @@
     }
 }
 
+# if  __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_8_0
 -(void)peripheralDidUpdateRSSI:(CBPeripheral *)peripheral error:(NSError *)error
 {
     if (peripheral == _peripheral) {
         self.RSSI = self.peripheral.RSSI;
-        self.rssiUpdated(error);
+        self.rssiUpdated(error,self.RSSI);
         self.rssiUpdated = nil;
     }
 }
 
+#else
+
+- (void)peripheral:(CBPeripheral *)peripheral didReadRSSI:(NSNumber *)RSSI error:(NSError *)error {
+    if (peripheral == _peripheral) {
+        self.RSSI = RSSI;
+        self.rssiUpdated(error,RSSI);
+        self.rssiUpdated = nil;
+    }
+}
+#endif
 
 #pragma mark Monitoring Changes to a Peripheral’s Name or Services
 

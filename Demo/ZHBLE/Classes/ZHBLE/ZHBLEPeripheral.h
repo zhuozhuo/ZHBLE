@@ -15,7 +15,7 @@
 @property(nonatomic) NSArray * services;
 @property(nonatomic, strong) NSUUID *identifier;
 @property(nonatomic, strong) NSString *name;
-@property(nonatomic, strong) NSNumber *RSSI NS_DEPRECATED(NA, NA, 5_0, 8_0);
+@property(nonatomic, strong) NSNumber *RSSI;//You should use readRSSIOnFinish replace it.
 @property(readonly) CBPeripheralState state;
 @property(nonatomic, copy) ZHServicesUpdated onServiceModified;
 @property(nonatomic, copy) ZHObjectChagedBlock onNameUpdated;
@@ -57,7 +57,7 @@
 
 
 #pragma mark ReadRSSI
-- (void)readRSSIOnFinish:(ZHObjectChagedBlock) onUpdated NS_DEPRECATED(NA, NA, 5_0, 8_0);
+- (void)readRSSIOnFinish:(ZHPeripheralUpdateRSSIBlock)onUpdated;
 
 #pragma mark cleanup
 /** Call this when things either go wrong, or you're done with the connection.

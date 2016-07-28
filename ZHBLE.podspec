@@ -32,7 +32,7 @@ Pod::Spec.new do |s|
                    DESC
 
   s.homepage     = "https://github.com/zhuozhuo/ZHBLE"
-  s.screenshots  = "https://github.com/zhuozhuo/ZHBLE/blob/master/Demo/ZHBLE/Screenshots/screenshot0.PNG", "https://github.com/zhuozhuo/ZHBLE/blob/master/Demo/ZHBLE/Screenshots/screenshot1.PNG"
+ s.screenshots  = ['https://github.com/zhuozhuo/ZHBLE/blob/master/Demo/ZHBLE/Screenshots/screenshot0.PNG', 'https://github.com/zhuozhuo/ZHBLE/blob/master/Demo/ZHBLE/Screenshots/screenshot1.PNG']
 
 
   # ―――  Spec License  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #

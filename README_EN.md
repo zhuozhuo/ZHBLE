@@ -22,14 +22,14 @@ imple and convenient to use Bluetooth。
 * CoreBluetooth.framework
 
 ##Introduce
-[Class name](https://github.com/zhuozhuo/BLE/tree/master/ZHBLE/Classes/ZHBLE) | Function and usage
+[Class name](https://github.com/zhuozhuo/ZHBLE/tree/master/Demo/ZHBLE/Classes/ZHBLE) | Function and usage
 ----- | -----
-[ZHBLECentral](https://github.com/zhuozhuo/BLE/blob/master/ZHBLE/Classes/ZHBLE/ZHBLECentral.h) | Equipment as the relevant attributes and operations on the Central side, for example: initialize Central, scanned, connect, retrieve equipment.
-[ZHBLEPeripheral](https://github.com/zhuozhuo/BLE/blob/master/ZHBLE/Classes/ZHBLE/ZHBLEPeripheral.h) | Peripheral-side operations such as: discovery service and features, listening, reading and writing, and so on.
-[ZHBLEPeripheralManager](https://github.com/zhuozhuo/BLE/blob/master/ZHBLE/Classes/ZHBLE/ZHBLEPeripheralManager.h) | Device as a Peripheral-side operations such as initialization of CBPeripheralManager, radio, adding services and send data.
-[ZHBLEStoredPeripherals](https://github.com/zhuozhuo/BLE/blob/master/ZHBLE/Classes/ZHBLE/ZHBLEStoredPeripherals.h) | Equipment local cache operations
-[ZHBLEManager](https://github.com/zhuozhuo/BLE/blob/master/ZHBLE/Classes/ZHBLE/ZHBLEManager.h) | Fast access to recently connected devices
-[ZHBLEBlocks](https://github.com/zhuozhuo/BLE/blob/master/ZHBLE/Classes/ZHBLE/ZHBLEBlocks.h) | All Block definition
+[ZHBLECentral](https://github.com/zhuozhuo/ZHBLE/blob/master/Demo/ZHBLE/Classes/ZHBLE/ZHBLECentral.h) | Equipment as the relevant attributes and operations on the Central side, for example: initialize Central, scanned, connect, retrieve equipment.
+[ZHBLEPeripheral](https://github.com/zhuozhuo/ZHBLE/blob/master/Demo/ZHBLE/Classes/ZHBLE/ZHBLEPeripheral.h) | Peripheral-side operations such as: discovery service and features, listening, reading and writing, and so on.
+[ZHBLEPeripheralManager](https://github.com/zhuozhuo/ZHBLE/blob/master/Demo/ZHBLE/Classes/ZHBLE/ZHBLEPeripheralManager.h) | Device as a Peripheral-side operations such as initialization of CBPeripheralManager, radio, adding services and send data.
+[ZHBLEStoredPeripherals](https://github.com/zhuozhuo/ZHBLE/blob/master/Demo/ZHBLE/Classes/ZHBLE/ZHBLEStoredPeripherals.h) | Equipment local cache operations
+[ZHBLEManager](https://github.com/zhuozhuo/ZHBLE/blob/master/Demo/ZHBLE/Classes/ZHBLE/ZHBLEManager.h) | Fast access to recently connected devices
+[ZHBLEBlocks](https://github.com/zhuozhuo/ZHBLE/blob/master/Demo/ZHBLE/Classes/ZHBLE/ZHBLEBlocks.h) | All Block definition
 
 ## Usage
 ### [CocoaPods](https://cocoapods.org/) (recommended)

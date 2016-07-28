@@ -24,14 +24,14 @@ ZHBLE 使用Block回调方式，旨在使调用系统CoreBluetooth库简单明�
 * CoreBluetooth.framework
 
 ##Introduce
-[类名](https://github.com/zhuozhuo/BLE/tree/master/ZHBLE/Classes/ZHBLE) | 作用及用法
+[类名](https://github.com/zhuozhuo/ZHBLE/tree/master/Demo/ZHBLE/Classes/ZHBLE) | 作用及用法
 ----- | -----
-[ZHBLECentral](https://github.com/zhuozhuo/BLE/blob/master/ZHBLE/Classes/ZHBLE/ZHBLECentral.h) | 设备作为Central端的相关属性和操作例如:初始化Central,扫描,连接,检索设备等。
-[ZHBLEPeripheral](https://github.com/zhuozhuo/BLE/blob/master/ZHBLE/Classes/ZHBLE/ZHBLEPeripheral.h) | 对Peripheral端的相关操作例如:发现服务和特征,监听，读写等操作。
-[ZHBLEPeripheralManager](https://github.com/zhuozhuo/BLE/blob/master/ZHBLE/Classes/ZHBLE/ZHBLEPeripheralManager.h) | 设备作为Peripheral端时的相关操作例如:CBPeripheralManager的初始化,广播,添加服务，发送数据等。
-[ZHBLEStoredPeripherals](https://github.com/zhuozhuo/BLE/blob/master/ZHBLE/Classes/ZHBLE/ZHBLEStoredPeripherals.h) | 设备本地缓存相关操作
-[ZHBLEManager](https://github.com/zhuozhuo/BLE/blob/master/ZHBLE/Classes/ZHBLE/ZHBLEManager.h) | 快捷访问最近连接的设备
-[ZHBLEBlocks](https://github.com/zhuozhuo/BLE/blob/master/ZHBLE/Classes/ZHBLE/ZHBLEBlocks.h) | 所有Block定义
+[ZHBLECentral](https://github.com/zhuozhuo/ZHBLE/blob/master/Demo/ZHBLE/Classes/ZHBLE/ZHBLECentral.h) | 设备作为Central端的相关属性和操作例如:初始化Central,扫描,连接,检索设备等。
+[ZHBLEPeripheral](https://github.com/zhuozhuo/ZHBLE/blob/master/Demo/ZHBLE/Classes/ZHBLE/ZHBLEPeripheral.h) | 对Peripheral端的相关操作例如:发现服务和特征,监听，读写等操作。
+[ZHBLEPeripheralManager](https://github.com/zhuozhuo/ZHBLE/blob/master/Demo/ZHBLE/Classes/ZHBLE/ZHBLEPeripheralManager.h) | 设备作为Peripheral端时的相关操作例如:CBPeripheralManager的初始化,广播,添加服务，发送数据等。
+[ZHBLEStoredPeripherals](https://github.com/zhuozhuo/ZHBLE/blob/master/Demo/ZHBLE/Classes/ZHBLE/ZHBLEStoredPeripherals.h) | 设备本地缓存相关操作
+[ZHBLEManager](https://github.com/zhuozhuo/ZHBLE/blob/master/Demo/ZHBLE/Classes/ZHBLE/ZHBLEManager.h) | 快捷访问最近连接的设备
+[ZHBLEBlocks](https://github.com/zhuozhuo/ZHBLE/blob/master/Demo/ZHBLE/Classes/ZHBLE/ZHBLEBlocks.h) | 所有Block定义
 
 ## Usage
 ### [CocoaPods](https://cocoapods.org/) (recommended)

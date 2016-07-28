@@ -84,11 +84,7 @@
 -(NSNumber *)RSSI
 {
     if (!_RSSI) {
-        if  (__IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_8_0)
-            self.RSSI = self.peripheral.RSSI;
-        else{
-            [self readRSSIOnFinish:nil];
-        }
+        [self readRSSIOnFinish:nil];
     }
     return _RSSI;
 }
@@ -296,17 +292,6 @@
     }
 }
 
-# if  __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_8_0
--(void)peripheralDidUpdateRSSI:(CBPeripheral *)peripheral error:(NSError *)error
-{
-    if (peripheral == _peripheral) {
-        self.RSSI = self.peripheral.RSSI;
-        self.rssiUpdated(error,self.RSSI);
-        self.rssiUpdated = nil;
-    }
-}
-
-#else
 
 - (void)peripheral:(CBPeripheral *)peripheral didReadRSSI:(NSNumber *)RSSI error:(NSError *)error {
     if (peripheral == _peripheral) {
@@ -315,7 +300,7 @@
         self.rssiUpdated = nil;
     }
 }
-#endif
+
 
 #pragma mark Monitoring Changes to a Peripheral’s Name or Services
 

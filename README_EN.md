@@ -1,20 +1,18 @@
 ##ZHBLE
-ZHBLE 使用Block回调方式，旨在使调用系统CoreBluetooth库简单明了.
+ZHBLE using Block callback methods, aimed at making the system CoreBluetooth library function is called simple.
 
 ![Screenshot0][img0] &nbsp;&nbsp; ![Screenshot1][img1] &nbsp;&nbsp;
 
 ![Screenshot2][img2] &nbsp;&nbsp; ![Screenshot3][img3]
 
-## [English README]()
-
 ##Features
-* 基于原生CoreBluetooth,回调函数全部封装成Block方式，使调用相关函数简洁明了。
-* 设备作为Central端和Peripheral端都有封装。
-* 采用工厂模式和Block结合使得初始化和函数调用更容易。
+* Based on the original CoreBluetooth, the callback function all packaged into Block mode, calls the associated function simplicity.。
+* Central and Peripheral side has packages。
+* Using the factory pattern and Block integration makes it easier for initialization and function calls.
 
 
 ## Design Goals
-简单快捷方便的使用Bluetooth。
+imple and convenient to use Bluetooth。
 
 
 ## Requirements
@@ -24,20 +22,20 @@ ZHBLE 使用Block回调方式，旨在使调用系统CoreBluetooth库简单明�
 * CoreBluetooth.framework
 
 ##Introduce
-[类名](https://github.com/zhuozhuo/BLE/tree/master/ZHBLE/Classes/ZHBLE) | 作用及用法
+[Class name](https://github.com/zhuozhuo/BLE/tree/master/ZHBLE/Classes/ZHBLE) | Function and usage
 ----- | -----
-[ZHBLECentral](https://github.com/zhuozhuo/BLE/blob/master/ZHBLE/Classes/ZHBLE/ZHBLECentral.h) | 设备作为Central端的相关属性和操作例如:初始化Central,扫描,连接,检索设备等。
-[ZHBLEPeripheral](https://github.com/zhuozhuo/BLE/blob/master/ZHBLE/Classes/ZHBLE/ZHBLEPeripheral.h) | 对Peripheral端的相关操作例如:发现服务和特征,监听，读写等操作。
-[ZHBLEPeripheralManager](https://github.com/zhuozhuo/BLE/blob/master/ZHBLE/Classes/ZHBLE/ZHBLEPeripheralManager.h) | 设备作为Peripheral端时的相关操作例如:CBPeripheralManager的初始化,广播,添加服务，发送数据等。
-[ZHBLEStoredPeripherals](https://github.com/zhuozhuo/BLE/blob/master/ZHBLE/Classes/ZHBLE/ZHBLEStoredPeripherals.h) | 设备本地缓存相关操作
-[ZHBLEManager](https://github.com/zhuozhuo/BLE/blob/master/ZHBLE/Classes/ZHBLE/ZHBLEManager.h) | 快捷访问最近连接的设备
-[ZHBLEBlocks](https://github.com/zhuozhuo/BLE/blob/master/ZHBLE/Classes/ZHBLE/ZHBLEBlocks.h) | 所有Block定义
+[ZHBLECentral](https://github.com/zhuozhuo/BLE/blob/master/ZHBLE/Classes/ZHBLE/ZHBLECentral.h) | Equipment as the relevant attributes and operations on the Central side, for example: initialize Central, scanned, connect, retrieve equipment.
+[ZHBLEPeripheral](https://github.com/zhuozhuo/BLE/blob/master/ZHBLE/Classes/ZHBLE/ZHBLEPeripheral.h) | Peripheral-side operations such as: discovery service and features, listening, reading and writing, and so on.
+[ZHBLEPeripheralManager](https://github.com/zhuozhuo/BLE/blob/master/ZHBLE/Classes/ZHBLE/ZHBLEPeripheralManager.h) | Device as a Peripheral-side operations such as initialization of CBPeripheralManager, radio, adding services and send data.
+[ZHBLEStoredPeripherals](https://github.com/zhuozhuo/BLE/blob/master/ZHBLE/Classes/ZHBLE/ZHBLEStoredPeripherals.h) | Equipment local cache operations
+[ZHBLEManager](https://github.com/zhuozhuo/BLE/blob/master/ZHBLE/Classes/ZHBLE/ZHBLEManager.h) | Fast access to recently connected devices
+[ZHBLEBlocks](https://github.com/zhuozhuo/BLE/blob/master/ZHBLE/Classes/ZHBLE/ZHBLEBlocks.h) | All Block definition
 
 ## Usage
 ### [CocoaPods](https://cocoapods.org/) (recommended)
 pod 'ZHBLE', '~> 0.1.5'
 
-### 复制文件夹ZHBLE至你的工程中
+### Copy the folder ZHBLE to your project
 
 ### Central
 ```objective-c
@@ -45,7 +43,7 @@ pod 'ZHBLE', '~> 0.1.5'
 
 self.central = [ZHBLECentral sharedZHBLECentral];
 
-//扫描
+//Scan
 
 [self.central scanPeripheralWithServices:uuids options:@{CBCentralManagerScanOptionAllowDuplicatesKey: @(YES)} onUpdated:^(ZHBLEPeripheral *peripheral,NSDictionary *data){
         if (peripheral) {
@@ -55,7 +53,7 @@ self.central = [ZHBLECentral sharedZHBLECentral];
        
     }];
 
-//连接
+//Connection
 
 [self.central connectPeripheral:peripheral options:nil onFinished:^(ZHBLEPeripheral *peripheral, NSError *error){
 }onDisconnected:^(ZHBLEPeripheral *peripheral, NSError *error){
@@ -73,7 +71,7 @@ self.central = [ZHBLECentral sharedZHBLECentral];
 
 self.peripheralManager = [ZHBLEPeripheralManager sharedZHBLEPeripheralManager];
 
-//广播
+//Advertise
 
  CBUUID *temUUID = [CBUUID UUIDWithString:@"902DD287-69BE-4ADD-AACF-AA3C24D83B66"];
         NSArray *temUUIDArray = [NSArray arrayWithObjects:temUUID, nil];
@@ -83,7 +81,7 @@ self.peripheralManager = [ZHBLEPeripheralManager sharedZHBLEPeripheralManager];
         }];
 
 
-//添加服务
+//Add Service
 [self.peripheralManager addService:_transferService onFinish:^(CBService *service,NSError *error){
         
             }];

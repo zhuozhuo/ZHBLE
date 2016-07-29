@@ -84,6 +84,7 @@
     }
     return _manager;
 }
+
 -(void)dealloc
 {
     _manager.delegate = nil;
@@ -321,7 +322,6 @@
         }
     }
 }
-
 
 #pragma mark -Filter BluetoolthState Judgement
 -(void)filterBluetoothState

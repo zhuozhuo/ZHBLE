@@ -11,17 +11,17 @@
 #import "ZHBLEBlocks.h"
 
 @interface ZHBLEPeripheral : NSObject
-@property(nonatomic, strong, readonly) CBPeripheral * peripheral;
-@property(nonatomic) NSArray * services;
-@property(nonatomic, strong) NSUUID *identifier;
-@property(nonatomic, strong) NSString *name;
-@property(nonatomic, strong) NSNumber *RSSI;//You should use readRSSIOnFinish replace it.
-@property(readonly) CBPeripheralState state;
-@property(nonatomic, copy) ZHServicesUpdated onServiceModified;
-@property(nonatomic, copy) ZHObjectChagedBlock onNameUpdated;
-@property(nonatomic, copy) ZHCharacteristicChangeBlock notificationStateChanged;
-@property(nonatomic, copy) ZHPeripheralConnectionBlock onConnectionFinished;
-@property(nonatomic, copy) ZHPeripheralConnectionBlock onDisconnected;
+@property (nonatomic, strong, readonly) CBPeripheral * peripheral;
+@property (nonatomic) NSArray * services;
+@property (nonatomic, strong) NSUUID *identifier;
+@property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong) NSNumber *RSSI;//You should use readRSSIOnFinish replace it.
+@property (readonly) CBPeripheralState state;
+@property (nonatomic, copy) ZHServicesUpdated onServiceModified;
+@property (nonatomic, copy) ZHObjectChagedBlock onNameUpdated;
+@property (nonatomic, copy) ZHCharacteristicChangeBlock notificationStateChanged;
+@property (nonatomic, copy) ZHPeripheralConnectionBlock onConnectionFinished;
+@property (nonatomic, copy) ZHPeripheralConnectionBlock onDisconnected;
 
 
 #pragma mark initial Methods

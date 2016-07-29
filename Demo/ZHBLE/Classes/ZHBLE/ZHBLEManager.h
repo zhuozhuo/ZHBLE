@@ -10,7 +10,7 @@
 #import <CoreBluetooth/CoreBluetooth.h>
 @interface ZHBLEManager : NSObject
 
-@property(nonatomic, strong)CBPeripheral *connectPeripheral;//current Connected device
+@property (nonatomic, strong) CBPeripheral *connectPeripheral;//current Connected device
 
 +(ZHBLEManager *)sharedZHBLEManager;
 

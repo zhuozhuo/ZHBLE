@@ -12,10 +12,10 @@
 
 
 @interface PeripheralTableViewController : UITableViewController
-@property(nonatomic ,strong) ZHBLEPeripheralManager *peripheralManager;
-@property(nonatomic ,strong) CBCentral *conntectedCentral;
-@property(nonatomic ,strong) NSMutableDictionary *subscribedCharacteristicDic;
+@property (nonatomic ,strong) ZHBLEPeripheralManager *peripheralManager;
+@property (nonatomic ,strong) CBCentral *conntectedCentral;
+@property (nonatomic ,strong) NSMutableDictionary *subscribedCharacteristicDic;
 
-@property (strong, nonatomic) CBMutableCharacteristic   *transferCharacteristic;
-@property (strong,  nonatomic)CBMutableService          *transferService;
+@property (strong, nonatomic) CBMutableCharacteristic *transferCharacteristic;
+@property (strong,  nonatomic)CBMutableService *transferService;
 @end

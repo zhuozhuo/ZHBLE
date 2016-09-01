@@ -17,8 +17,8 @@
 @property (nonatomic, strong) NSMutableDictionary * serviceAddingBlocks;
 @property (nonatomic, copy) ZHObjectChagedBlock advertisingStartedBlock;
 
-@property (nonatomic, strong)NSDictionary * initialzedOptions;
-@property (nonatomic, strong)dispatch_queue_t queue;
+@property (nonatomic, strong) NSDictionary * initialzedOptions;
+@property (nonatomic, strong) dispatch_queue_t queue;
 
 @end
 @implementation ZHBLEPeripheralManager

@@ -11,10 +11,10 @@
 
 @interface PeripheralserviceTableViewController : UITableViewController
 
-@property(nonatomic, strong) NSArray *serviceArray;
-@property(nonatomic, strong) NSMutableArray *characteristicArray;
+@property (nonatomic, strong) NSArray *serviceArray;
+@property (nonatomic, strong) NSMutableArray *characteristicArray;
 
-@property(nonatomic, strong) ZHBLEPeripheral *connectedPeripheral;
-@property(nonatomic, strong) NSString *testString;
+@property (nonatomic, strong) ZHBLEPeripheral *connectedPeripheral;
+@property (nonatomic, strong) NSString *testString;
 
 @end

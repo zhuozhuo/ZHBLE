@@ -10,7 +10,7 @@
 #define bleCellIdentifier @"searchBleCellIdentifier"
 
 #import "DeviceListTableViewController.h"
-#import "peripheralserviceTableViewController.h"
+#import "PeripheralserviceTableViewController.h"
 #import "Constant.h"
 #import "ZHBLEStoredPeripherals.h"
 

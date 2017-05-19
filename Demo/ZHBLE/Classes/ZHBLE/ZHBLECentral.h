@@ -16,7 +16,7 @@
 @interface ZHBLECentral : NSObject
 
 @property (nonatomic, strong, readonly) NSMutableArray *peripherals;
-@property (nonatomic, readonly) CBCentralManagerState state;
+@property (nonatomic, readonly) CBManagerState state;
 @property (nonatomic, copy) ZHObjectChagedBlock onStateChanged;
 @property (nonatomic, strong) dispatch_queue_t queue;
 @property (nonatomic, strong) CBCentralManager * manager;

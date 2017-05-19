@@ -11,7 +11,7 @@
 
 @interface ZHBLEPeripheralManager : NSObject
 @property (nonatomic, readonly) BOOL isAdvertizing;
-@property (nonatomic, readonly) CBPeripheralManagerState state;
+@property (nonatomic, readonly) CBManagerState state;
 @property (nonatomic, copy) ZHObjectChagedBlock onStateUpdated;
 @property (nonatomic, copy) ZHPeripheralManagerStatedChangedBlock onWillRestoreState;
 @property (nonatomic, copy) ZHCentralSubscriptionBlock onSubscribedBlock;

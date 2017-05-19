@@ -174,7 +174,7 @@
     [_peripheralManager setDesiredConnectionLatency: latency forCentral:central];
 }
 
-- (CBPeripheralManagerState) state
+- (CBManagerState) state
 {
     
     return self.peripheralManager.state;

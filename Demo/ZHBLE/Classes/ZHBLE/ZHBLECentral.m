@@ -92,7 +92,7 @@
 
 
 #pragma mark － property Methods
--(CBCentralManagerState)state
+-(CBManagerState)state
 {
     return self.manager.state;
 }

@@ -321,7 +321,7 @@
 				TargetAttributes = {
 					9E34E1AF1B58AE0A009C1867 = {
 						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = 638EB3H4SQ;
+						DevelopmentTeam = 64QZ5ZPJ44;
 					};
 					9E34E1C81B58AE0A009C1867 = {
 						CreatedOnToolsVersion = 6.4;
@@ -520,10 +520,11 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 64QZ5ZPJ44;
 				INFOPLIST_FILE = ZHBLE/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.Imco.ZHBLE;
+				PRODUCT_BUNDLE_IDENTIFIER = cn.Imco.ZHBLE;
 				PRODUCT_NAME = ZHBLE;
 				PROVISIONING_PROFILE = "";
 			};
@@ -536,10 +537,11 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 64QZ5ZPJ44;
 				INFOPLIST_FILE = ZHBLE/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.Imco.ZHBLE;
+				PRODUCT_BUNDLE_IDENTIFIER = cn.Imco.ZHBLE;
 				PRODUCT_NAME = ZHBLE;
 				PROVISIONING_PROFILE = "";
 			};

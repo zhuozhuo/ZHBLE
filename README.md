@@ -57,12 +57,9 @@ self.central = [ZHBLECentral sharedZHBLECentral];
 
 //连接
 
-[self.central connectPeripheral:peripheral options:nil onFinished:^(ZHBLEPeripheral *peripheral, NSError *error){
-}onDisconnected:^(ZHBLEPeripheral *peripheral, NSError *error){
-                    
-        });
+    [self.central connectPeripheral:peripheral options:nil onFinished:^(ZHBLEPeripheral *peripheral, NSError *error){
+    
     }];
-
 ```
 
 ## Peripheral

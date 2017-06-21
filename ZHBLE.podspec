@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "ZHBLE"
-  s.version      = "0.1.5"
+  s.version      = "0.1.6"
   s.summary      = "ZHBLE Block way, aim to make call BlueTooth more simple."
 
   # This description is used to generate tags and improve search results.

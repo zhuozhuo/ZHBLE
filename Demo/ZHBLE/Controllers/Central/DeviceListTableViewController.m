@@ -41,12 +41,7 @@
     }
     self.connectedDeviceArray = [NSMutableArray arrayWithArray:peripherayArray];
     self.findDeviceArray = [NSMutableArray array];
-    if (self.central.state != CBCentralManagerStatePoweredOn) {
-        __weak id weakSelf = self;
-        self.central.onStateChanged = ^(NSError *error){
-            [weakSelf scan];
-        };
-    }
+    
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -258,26 +253,15 @@
         weakSelf.connectedPeripheral = peripheral;
         [weakSelf deletePeripheralInFindDevice:peripheral];
         [weakSelf addPeripheralToConnectedDevice:peripheral];
-       
+        
         [peripheral.peripheral.services enumerateObjectsUsingBlock:^(id obj, NSUInteger index, BOOL *stop){
             CBService *service = obj;
             NSLog(@"serviceUUID:%@",[service.UUID UUIDString]);
         }];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [weakSelf pushWithPeripheral:peripheral];
-            [self.tableView reloadData];
-        });
-    }onDisconnected:^(ZHBLEPeripheral *peripheral, NSError *error){
-        [weakSelf deletePeripheralInConnectedDevice:peripheral];
-        [ZHBLEStoredPeripherals deleteUUID:peripheral.identifier];
-        NSString *errorString = [NSString stringWithFormat:@"%@",error];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Disconnected" message:errorString delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-            [alertView show];
-            
-        });
-    }];
+        [weakSelf pushWithPeripheral:peripheral];
+        [self.tableView reloadData];
 
+    }];
 }
 
 

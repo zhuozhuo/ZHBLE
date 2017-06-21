@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		9E34E1DA1B58AE1B009C1867 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E34E1D91B58AE1B009C1867 /* CoreBluetooth.framework */; };
+		9E3A00A31EFA4C5C00D2CA80 /* ZHBLECentral.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E3A009A1EFA4C5C00D2CA80 /* ZHBLECentral.m */; };
+		9E3A00A41EFA4C5C00D2CA80 /* ZHBLEManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E3A009C1EFA4C5C00D2CA80 /* ZHBLEManager.m */; };
+		9E3A00A51EFA4C5C00D2CA80 /* ZHBLEPeripheral.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E3A009E1EFA4C5C00D2CA80 /* ZHBLEPeripheral.m */; };
+		9E3A00A61EFA4C5C00D2CA80 /* ZHBLEPeripheralManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E3A00A01EFA4C5C00D2CA80 /* ZHBLEPeripheralManager.m */; };
+		9E3A00A71EFA4C5C00D2CA80 /* ZHBLEStoredPeripherals.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E3A00A21EFA4C5C00D2CA80 /* ZHBLEStoredPeripherals.m */; };
 		9EC46A661D48854A00F3BBE0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EC46A451D48854A00F3BBE0 /* AppDelegate.m */; };
 		9EC46A671D48854A00F3BBE0 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9EC46A461D48854A00F3BBE0 /* LaunchScreen.xib */; };
 		9EC46A681D48854A00F3BBE0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9EC46A481D48854A00F3BBE0 /* Main.storyboard */; };
@@ -19,11 +24,6 @@
 		9EC46A851D48910800F3BBE0 /* HomepageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EC46A841D48910800F3BBE0 /* HomepageTableViewController.m */; };
 		9EC46A881D48A09900F3BBE0 /* PeripheralTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EC46A871D48A09900F3BBE0 /* PeripheralTableViewController.m */; };
 		9EC46A8C1D48ABEA00F3BBE0 /* UIAlertView+showAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EC46A8B1D48ABEA00F3BBE0 /* UIAlertView+showAlertView.m */; };
-		9EC46AAC1D48BE5900F3BBE0 /* ZHBLECentral.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EC46AA31D48BE5900F3BBE0 /* ZHBLECentral.m */; };
-		9EC46AAD1D48BE5900F3BBE0 /* ZHBLEManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EC46AA51D48BE5900F3BBE0 /* ZHBLEManager.m */; };
-		9EC46AAE1D48BE5900F3BBE0 /* ZHBLEPeripheral.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EC46AA71D48BE5900F3BBE0 /* ZHBLEPeripheral.m */; };
-		9EC46AAF1D48BE5900F3BBE0 /* ZHBLEPeripheralManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EC46AA91D48BE5900F3BBE0 /* ZHBLEPeripheralManager.m */; };
-		9EC46AB01D48BE5900F3BBE0 /* ZHBLEStoredPeripherals.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EC46AAB1D48BE5900F3BBE0 /* ZHBLEStoredPeripherals.m */; };
 		9EC46AD61D49B6B300F3BBE0 /* screenshot0.png in Resources */ = {isa = PBXBuildFile; fileRef = 9EC46AD21D49B6B300F3BBE0 /* screenshot0.png */; };
 		9EC46AD71D49B6B300F3BBE0 /* screenshot1.png in Resources */ = {isa = PBXBuildFile; fileRef = 9EC46AD31D49B6B300F3BBE0 /* screenshot1.png */; };
 		9EC46AD81D49B6B300F3BBE0 /* screenshot2.png in Resources */ = {isa = PBXBuildFile; fileRef = 9EC46AD41D49B6B300F3BBE0 /* screenshot2.png */; };
@@ -46,6 +46,18 @@
 		9E34E1B01B58AE0A009C1867 /* ZHBLE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZHBLE.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E34E1C91B58AE0A009C1867 /* ZHBLE.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZHBLE.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E34E1D91B58AE1B009C1867 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		9E3A00971EFA4C5C00D2CA80 /* ZHBLE.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHBLE.h; sourceTree = "<group>"; };
+		9E3A00981EFA4C5C00D2CA80 /* ZHBLEBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHBLEBlocks.h; sourceTree = "<group>"; };
+		9E3A00991EFA4C5C00D2CA80 /* ZHBLECentral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHBLECentral.h; sourceTree = "<group>"; };
+		9E3A009A1EFA4C5C00D2CA80 /* ZHBLECentral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHBLECentral.m; sourceTree = "<group>"; };
+		9E3A009B1EFA4C5C00D2CA80 /* ZHBLEManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHBLEManager.h; sourceTree = "<group>"; };
+		9E3A009C1EFA4C5C00D2CA80 /* ZHBLEManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHBLEManager.m; sourceTree = "<group>"; };
+		9E3A009D1EFA4C5C00D2CA80 /* ZHBLEPeripheral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHBLEPeripheral.h; sourceTree = "<group>"; };
+		9E3A009E1EFA4C5C00D2CA80 /* ZHBLEPeripheral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHBLEPeripheral.m; sourceTree = "<group>"; };
+		9E3A009F1EFA4C5C00D2CA80 /* ZHBLEPeripheralManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHBLEPeripheralManager.h; sourceTree = "<group>"; };
+		9E3A00A01EFA4C5C00D2CA80 /* ZHBLEPeripheralManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHBLEPeripheralManager.m; sourceTree = "<group>"; };
+		9E3A00A11EFA4C5C00D2CA80 /* ZHBLEStoredPeripherals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHBLEStoredPeripherals.h; sourceTree = "<group>"; };
+		9E3A00A21EFA4C5C00D2CA80 /* ZHBLEStoredPeripherals.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHBLEStoredPeripherals.m; sourceTree = "<group>"; };
 		9EC46A441D48854A00F3BBE0 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		9EC46A451D48854A00F3BBE0 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		9EC46A471D48854A00F3BBE0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -66,18 +78,6 @@
 		9EC46A871D48A09900F3BBE0 /* PeripheralTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeripheralTableViewController.m; sourceTree = "<group>"; };
 		9EC46A8A1D48ABEA00F3BBE0 /* UIAlertView+showAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+showAlertView.h"; sourceTree = "<group>"; };
 		9EC46A8B1D48ABEA00F3BBE0 /* UIAlertView+showAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+showAlertView.m"; sourceTree = "<group>"; };
-		9EC46AA11D48BE5900F3BBE0 /* ZHBLEBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHBLEBlocks.h; sourceTree = "<group>"; };
-		9EC46AA21D48BE5900F3BBE0 /* ZHBLECentral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHBLECentral.h; sourceTree = "<group>"; };
-		9EC46AA31D48BE5900F3BBE0 /* ZHBLECentral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHBLECentral.m; sourceTree = "<group>"; };
-		9EC46AA41D48BE5900F3BBE0 /* ZHBLEManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHBLEManager.h; sourceTree = "<group>"; };
-		9EC46AA51D48BE5900F3BBE0 /* ZHBLEManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHBLEManager.m; sourceTree = "<group>"; };
-		9EC46AA61D48BE5900F3BBE0 /* ZHBLEPeripheral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHBLEPeripheral.h; sourceTree = "<group>"; };
-		9EC46AA71D48BE5900F3BBE0 /* ZHBLEPeripheral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHBLEPeripheral.m; sourceTree = "<group>"; };
-		9EC46AA81D48BE5900F3BBE0 /* ZHBLEPeripheralManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHBLEPeripheralManager.h; sourceTree = "<group>"; };
-		9EC46AA91D48BE5900F3BBE0 /* ZHBLEPeripheralManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHBLEPeripheralManager.m; sourceTree = "<group>"; };
-		9EC46AAA1D48BE5900F3BBE0 /* ZHBLEStoredPeripherals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHBLEStoredPeripherals.h; sourceTree = "<group>"; };
-		9EC46AAB1D48BE5900F3BBE0 /* ZHBLEStoredPeripherals.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHBLEStoredPeripherals.m; sourceTree = "<group>"; };
-		9EC46ACF1D48D9CF00F3BBE0 /* ZHBLE.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHBLE.h; sourceTree = "<group>"; };
 		9EC46AD21D49B6B300F3BBE0 /* screenshot0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screenshot0.png; sourceTree = "<group>"; };
 		9EC46AD31D49B6B300F3BBE0 /* screenshot1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screenshot1.png; sourceTree = "<group>"; };
 		9EC46AD41D49B6B300F3BBE0 /* screenshot2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screenshot2.png; sourceTree = "<group>"; };
@@ -124,6 +124,25 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		9E3A00961EFA4C5C00D2CA80 /* ZHBLE */ = {
+			isa = PBXGroup;
+			children = (
+				9E3A00971EFA4C5C00D2CA80 /* ZHBLE.h */,
+				9E3A00981EFA4C5C00D2CA80 /* ZHBLEBlocks.h */,
+				9E3A00991EFA4C5C00D2CA80 /* ZHBLECentral.h */,
+				9E3A009A1EFA4C5C00D2CA80 /* ZHBLECentral.m */,
+				9E3A009B1EFA4C5C00D2CA80 /* ZHBLEManager.h */,
+				9E3A009C1EFA4C5C00D2CA80 /* ZHBLEManager.m */,
+				9E3A009D1EFA4C5C00D2CA80 /* ZHBLEPeripheral.h */,
+				9E3A009E1EFA4C5C00D2CA80 /* ZHBLEPeripheral.m */,
+				9E3A009F1EFA4C5C00D2CA80 /* ZHBLEPeripheralManager.h */,
+				9E3A00A01EFA4C5C00D2CA80 /* ZHBLEPeripheralManager.m */,
+				9E3A00A11EFA4C5C00D2CA80 /* ZHBLEStoredPeripherals.h */,
+				9E3A00A21EFA4C5C00D2CA80 /* ZHBLEStoredPeripherals.m */,
+			);
+			path = ZHBLE;
+			sourceTree = "<group>";
+		};
 		9EC46A431D48854A00F3BBE0 /* ZHBLE */ = {
 			isa = PBXGroup;
 			children = (
@@ -149,7 +168,7 @@
 		9EC46A4A1D48854A00F3BBE0 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				9EC46AA01D48BE5900F3BBE0 /* ZHBLE */,
+				9E3A00961EFA4C5C00D2CA80 /* ZHBLE */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -251,25 +270,6 @@
 				9EC46AD51D49B6B300F3BBE0 /* screenshot3.png */,
 			);
 			path = Screenshots;
-			sourceTree = "<group>";
-		};
-		9EC46AA01D48BE5900F3BBE0 /* ZHBLE */ = {
-			isa = PBXGroup;
-			children = (
-				9EC46ACF1D48D9CF00F3BBE0 /* ZHBLE.h */,
-				9EC46AA11D48BE5900F3BBE0 /* ZHBLEBlocks.h */,
-				9EC46AA21D48BE5900F3BBE0 /* ZHBLECentral.h */,
-				9EC46AA31D48BE5900F3BBE0 /* ZHBLECentral.m */,
-				9EC46AA41D48BE5900F3BBE0 /* ZHBLEManager.h */,
-				9EC46AA51D48BE5900F3BBE0 /* ZHBLEManager.m */,
-				9EC46AA61D48BE5900F3BBE0 /* ZHBLEPeripheral.h */,
-				9EC46AA71D48BE5900F3BBE0 /* ZHBLEPeripheral.m */,
-				9EC46AA81D48BE5900F3BBE0 /* ZHBLEPeripheralManager.h */,
-				9EC46AA91D48BE5900F3BBE0 /* ZHBLEPeripheralManager.m */,
-				9EC46AAA1D48BE5900F3BBE0 /* ZHBLEStoredPeripherals.h */,
-				9EC46AAB1D48BE5900F3BBE0 /* ZHBLEStoredPeripherals.m */,
-			);
-			path = ZHBLE;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -381,16 +381,16 @@
 			files = (
 				9EC46A731D48854A00F3BBE0 /* main.m in Sources */,
 				9EC46A851D48910800F3BBE0 /* HomepageTableViewController.m in Sources */,
-				9EC46AAE1D48BE5900F3BBE0 /* ZHBLEPeripheral.m in Sources */,
 				9EC46A8C1D48ABEA00F3BBE0 /* UIAlertView+showAlertView.m in Sources */,
 				9EC46A6E1D48854A00F3BBE0 /* DeviceListTableViewController.m in Sources */,
+				9E3A00A71EFA4C5C00D2CA80 /* ZHBLEStoredPeripherals.m in Sources */,
 				9EC46A701D48854A00F3BBE0 /* PeripheralserviceTableViewController.m in Sources */,
-				9EC46AB01D48BE5900F3BBE0 /* ZHBLEStoredPeripherals.m in Sources */,
-				9EC46AAD1D48BE5900F3BBE0 /* ZHBLEManager.m in Sources */,
-				9EC46AAC1D48BE5900F3BBE0 /* ZHBLECentral.m in Sources */,
 				9EC46A881D48A09900F3BBE0 /* PeripheralTableViewController.m in Sources */,
+				9E3A00A61EFA4C5C00D2CA80 /* ZHBLEPeripheralManager.m in Sources */,
+				9E3A00A41EFA4C5C00D2CA80 /* ZHBLEManager.m in Sources */,
+				9E3A00A51EFA4C5C00D2CA80 /* ZHBLEPeripheral.m in Sources */,
 				9EC46A661D48854A00F3BBE0 /* AppDelegate.m in Sources */,
-				9EC46AAF1D48BE5900F3BBE0 /* ZHBLEPeripheralManager.m in Sources */,
+				9E3A00A31EFA4C5C00D2CA80 /* ZHBLECentral.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

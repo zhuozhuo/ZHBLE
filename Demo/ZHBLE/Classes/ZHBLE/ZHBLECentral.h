@@ -17,16 +17,15 @@
 
 @property (nonatomic, strong, readonly) NSMutableArray *peripherals;
 @property (nonatomic, readonly) CBManagerState state;
-@property (nonatomic, copy) ZHObjectChagedBlock onStateChanged;
 @property (nonatomic, strong) dispatch_queue_t queue;
 @property (nonatomic, strong) CBCentralManager * manager;
 
 @property (nonatomic, copy) ZHPeripheralUpdatedBlock onPeripheralUpdated;
+@property (nonatomic, copy) ZHPeripheralDisConnectionBlock disConnectionBlock;
 @property (nonatomic, assign) BOOL scanStarted;
 @property (nonatomic, strong) NSMutableArray * connectingPeripherals;
 @property (nonatomic, strong) NSMutableArray * connectedPeripherals;
 @property (nonatomic, strong) NSDictionary * initializedOptions;
-@property (nonatomic, strong) NSMutableDictionary * disconnectedBlocks;
 @property (nonatomic, strong) NSMutableDictionary * connectionFinishBlocks;
 
 #pragma mark initial Methods
@@ -37,10 +36,13 @@
 -(instancetype)initWithQueue:(dispatch_queue_t)queue options:(NSDictionary *)options;
 
 #pragma mark scan or stopScan methods
+
 /**
- *  scan offer some special service advertising advice
- *
- *  @param services service UUID
+ Scan Peripheral with Services
+
+ *  @param serviceUUIDs scan service uuids
+ *  @param options options
+ *  @param onUpdateBlock call back
  */
 -(void)scanPeripheralWithServices:(NSArray *)serviceUUIDs options:(NSDictionary *)options onUpdated:(ZHPeripheralUpdatedBlock) onUpdateBlock;
 
@@ -50,8 +52,7 @@
 -(void)stopScan;
 
 #pragma mark Establishing or Canceling Connection
--(void)connectPeripheral:(ZHBLEPeripheral *)peripheral options:(NSDictionary *)options onFinished:(ZHPeripheralConnectionBlock) finished onDisconnected:(ZHPeripheralConnectionBlock) onDisconnected;
-
+-(void)connectPeripheral:(ZHBLEPeripheral *)peripheral options:(NSDictionary *)options onFinished:(ZHPeripheralConnectionBlock) finished;
 -(void)cancelPeripheralConnection:(ZHBLEPeripheral *)peripheral onFinished:(ZHPeripheralConnectionBlock) ondisconnected;
 
 

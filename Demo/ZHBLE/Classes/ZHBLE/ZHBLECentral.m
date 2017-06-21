@@ -65,8 +65,14 @@
     self.connectingPeripherals  = [NSMutableArray array];
     self.connectedPeripherals   = [NSMutableArray array];
     self.connectionFinishBlocks = [NSMutableDictionary dictionary];
-    self.disconnectedBlocks     = [NSMutableDictionary dictionary];
+   
     [ZHBLEStoredPeripherals initializeStorage];//初始化存储
+    if (![CBCentralManager instancesRespondToSelector:@selector(initWithDelegate:queue:options:)]) {
+        //for version lowser than 7.0
+        _manager = [[CBCentralManager alloc]initWithDelegate:self queue:self.queue];
+    }else{
+        _manager = [[CBCentralManager alloc]initWithDelegate:self queue:self.queue options:self.initializedOptions];
+    }
 }
 
 -(CBCentralManager *)manager
@@ -103,6 +109,23 @@
 -(void)scanPeripheralWithServices:(NSArray *)serviceUUIDs options:(NSDictionary *)options onUpdated:(ZHPeripheralUpdatedBlock)onUpdateBlock
 {
     NSAssert(onUpdateBlock !=nil, @"onUpdateBlock can not be nil");
+    if (serviceUUIDs) {
+        NSArray *array = [self.manager retrieveConnectedPeripheralsWithServices:serviceUUIDs];
+        [array enumerateObjectsUsingBlock:^(CBPeripheral *peripheral, NSUInteger index, BOOL *stop){
+            ZHBLEPeripheral *zhPeripheral = peripheral.delegate;
+            if (!zhPeripheral) {
+                zhPeripheral = [[ZHBLEPeripheral alloc] initWithPeripheral:peripheral];
+            }
+            if (zhPeripheral && ![self.peripherals containsObject:peripheral]) {
+                [self.peripherals addObject:zhPeripheral];
+            }
+            [zhPeripheral readRSSIOnFinish:nil];
+            if (_onPeripheralUpdated) {
+                _onPeripheralUpdated(zhPeripheral,nil);
+            }
+        }];
+
+    }
     [self.manager scanForPeripheralsWithServices:serviceUUIDs                                            options:options];
     self.onPeripheralUpdated = onUpdateBlock;
 }
@@ -117,18 +140,19 @@
 #pragma mark － discoverPeripheral
 
 #pragma mark Establishing or cancel with peripherals
--(void)connectPeripheral:(ZHBLEPeripheral *)peripheral options:(NSDictionary *)options onFinished:(ZHPeripheralConnectionBlock)finished onDisconnected:(ZHPeripheralConnectionBlock)onDisconnected
+-(void)connectPeripheral:(ZHBLEPeripheral *)peripheral options:(NSDictionary *)options onFinished:(ZHPeripheralConnectionBlock)finished
 {
-    self.connectionFinishBlocks[peripheral.identifier] = finished;
-    self.disconnectedBlocks[peripheral.identifier] = onDisconnected;
-    [self.connectingPeripherals addObject: peripheral];
-    [self.manager connectPeripheral:peripheral.peripheral options:options];
-    
+   
+    if (finished && peripheral) {
+        self.connectionFinishBlocks[peripheral.identifier] = finished;
+        [self.connectingPeripherals addObject: peripheral];
+        [self.manager connectPeripheral:peripheral.peripheral options:options];
+    }
 }
 
 -(void)cancelPeripheralConnection:(ZHBLEPeripheral *)peripheral onFinished:(ZHPeripheralConnectionBlock)ondisconnected
 {
-    self.disconnectedBlocks[peripheral.identifier] = ondisconnected;
+    self.disConnectionBlock = ondisconnected;
     [self.manager cancelPeripheralConnection:peripheral.peripheral];
     
 }
@@ -219,20 +243,16 @@
 -(void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error
 {
     ZHBLEPeripheral *thePeripheral = peripheral.delegate;
+    ZHPeripheralConnectionBlock finish = self.connectionFinishBlocks[thePeripheral.identifier];
+    if (finish) {
+        finish(thePeripheral,error);
+        [self.connectionFinishBlocks removeObjectForKey:thePeripheral.identifier];
+    }
+
     if (thePeripheral && [self.connectingPeripherals containsObject:thePeripheral]) {
-        ZHPeripheralConnectionBlock finish = self.connectionFinishBlocks[thePeripheral.identifier];
-        
         //remove it
         [self.connectingPeripherals removeObject:peripheral];
-        
         [thePeripheral cleanup];
-        
-        if (finish) {
-            finish(thePeripheral,error);
-            [self.connectionFinishBlocks removeObjectForKey:thePeripheral.identifier];
-            [self.disconnectedBlocks removeObjectForKey:thePeripheral.identifier];
-        }
-        
     }
 }
 
@@ -240,19 +260,15 @@
 -(void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error
 {
     ZHBLEPeripheral *thePeripheral = peripheral.delegate;
+    if (self.disConnectionBlock) {
+        self.disConnectionBlock(thePeripheral, error);
+    }
+    
     if (thePeripheral && [self.connectedPeripherals containsObject:thePeripheral]) {
-        ZHPeripheralConnectionBlock finish = self.disconnectedBlocks[peripheral.identifier];
-        
         //Manager Peripheral set is empty
         ZHBLEManager *manager = [ZHBLEManager sharedZHBLEManager];
         manager.connectPeripheral = nil;
-        
         [self.connectedPeripherals removeObject:peripheral];
-        if (finish) {
-            finish(thePeripheral,error);
-            [self.disconnectedBlocks removeObjectForKey:thePeripheral.identifier];
-        }
-        
     }
 }
 
@@ -264,39 +280,34 @@
     [self.connectingPeripherals removeAllObjects];
     [self.peripherals removeAllObjects];
     [self.connectionFinishBlocks removeAllObjects];
-    [self.disconnectedBlocks removeAllObjects];
+    if (self.onPeripheralUpdated) {
+        self.onPeripheralUpdated = nil;
+    }
+    if (self.disConnectionBlock) {
+        self.disConnectionBlock = nil;
+    }
+    
 }
 
 #pragma mark - central state delegate
 -(void)centralManagerDidUpdateState:(CBCentralManager *)central
 {
     if (central == self.manager) {
-        [self filterBluetoothState];
         switch (central.state) {
             case CBCentralManagerStatePoweredOff:
             {
                 [self clearPeripherals];
-                if (_onPeripheralUpdated)
-                {
-                    _onPeripheralUpdated(nil,nil);
-                }
+                
             }
                 break;
             case CBCentralManagerStatePoweredOn:
             {
-                if (_onPeripheralUpdated)
-                {
-                    _onPeripheralUpdated(nil,nil);
-                }
+                
             }
                 break;
             case CBCentralManagerStateResetting:
             {
                 [self clearPeripherals];
-                if (_onPeripheralUpdated)
-                {
-                    _onPeripheralUpdated(nil,nil);
-                }
             }
                 break;
             case CBCentralManagerStateUnauthorized:
@@ -315,10 +326,6 @@
                 break;
             default:
                 break;
-        }
-        if (_onStateChanged)
-        {
-            _onStateChanged(nil);
         }
     }
 }

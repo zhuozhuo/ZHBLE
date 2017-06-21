@@ -34,7 +34,6 @@
     if (self) {
         _peripheral = peripheral;
         _peripheral.delegate = self;
-        
         self.servicesFindingIncludeService = [NSMutableDictionary dictionary];
         
         self.characteristicsDiscoveredBlocks = [NSMutableDictionary dictionary];
@@ -199,8 +198,10 @@
         [self cleanup];
     }
     if (peripheral == _peripheral) {
-        self.didFinishServiceDiscovery(error);
-        self.didFinishServiceDiscovery = nil;
+        if (self.didFinishServiceDiscovery) {
+            self.didFinishServiceDiscovery(error);
+            self.didFinishServiceDiscovery = nil;
+        }
     }
 }
 
@@ -276,6 +277,9 @@
 -(void)peripheral:(CBPeripheral *)peripheral didWriteValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error
 {
     if (peripheral == _peripheral) {
+        if ([characteristic.UUID.UUIDString isEqualToString:@"00006387-3C17-D293-8E48-14FE2E4DA212"]) {
+            NSLog(@"receive DFU Trans Data responese");
+        }
         ZHCharacteristicChangeBlock onwrite = _characteristicValueWrtieBlocks[characteristic.UUID];
         if (onwrite) {
             onwrite(characteristic,error);
@@ -296,8 +300,10 @@
 - (void)peripheral:(CBPeripheral *)peripheral didReadRSSI:(NSNumber *)RSSI error:(NSError *)error {
     if (peripheral == _peripheral) {
         self.RSSI = RSSI;
-        self.rssiUpdated(error,RSSI);
-        self.rssiUpdated = nil;
+        if (self.rssiUpdated) {
+            self.rssiUpdated(error,RSSI);
+            self.rssiUpdated = nil;
+        }
     }
 }
 

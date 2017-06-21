@@ -37,12 +37,13 @@
 
 #pragma mark scan or stopScan methods
 
+
 /**
  Scan Peripheral with Services
 
- *  @param serviceUUIDs scan service uuids
- *  @param options options
- *  @param onUpdateBlock call back
+ @param serviceUUIDs The special service uuids.
+ @param options options.
+ @param onUpdateBlock call back.
  */
 -(void)scanPeripheralWithServices:(NSArray *)serviceUUIDs options:(NSDictionary *)options onUpdated:(ZHPeripheralUpdatedBlock) onUpdateBlock;
 

@@ -35,7 +35,7 @@ ZHBLE 使用Block回调方式，旨在使调用系统CoreBluetooth库简单明�
 
 ## Usage
 ### [CocoaPods](https://cocoapods.org/) (recommended)
-pod 'ZHBLE', '~> 0.1.5'
+`pod 'ZHBLE'`
 
 ### 复制文件夹ZHBLE至你的工程中
 

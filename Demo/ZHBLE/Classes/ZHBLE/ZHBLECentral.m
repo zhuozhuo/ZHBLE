@@ -120,8 +120,8 @@
                 [self.peripherals addObject:zhPeripheral];
             }
             [zhPeripheral readRSSIOnFinish:nil];
-            if (_onPeripheralUpdated) {
-                _onPeripheralUpdated(zhPeripheral,nil);
+            if (onUpdateBlock) {
+               onUpdateBlock(zhPeripheral,nil);
             }
         }];
 

@@ -119,13 +119,14 @@
             if (zhPeripheral && ![self.peripherals containsObject:peripheral]) {
                 [self.peripherals addObject:zhPeripheral];
             }
-            [zhPeripheral readRSSIOnFinish:nil];
+            
             if (onUpdateBlock) {
-               onUpdateBlock(zhPeripheral,nil);
+                onUpdateBlock(zhPeripheral,nil);
             }
         }];
 
     }
+    
     [self.manager scanForPeripheralsWithServices:serviceUUIDs                                            options:options];
     self.onPeripheralUpdated = onUpdateBlock;
 }
@@ -293,6 +294,9 @@
 -(void)centralManagerDidUpdateState:(CBCentralManager *)central
 {
     if (central == self.manager) {
+        if (self.centralStateUpdateBlock) {
+            self.centralStateUpdateBlock(central);
+        }
         switch (central.state) {
             case CBCentralManagerStatePoweredOff:
             {

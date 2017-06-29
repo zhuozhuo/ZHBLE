@@ -22,6 +22,7 @@
 
 @property (nonatomic, copy) ZHPeripheralUpdatedBlock onPeripheralUpdated;
 @property (nonatomic, copy) ZHPeripheralDisConnectionBlock disConnectionBlock;
+@property (nonatomic, copy) ZHCentralStateDidUpdatedBlock centralStateUpdateBlock;
 @property (nonatomic, assign) BOOL scanStarted;
 @property (nonatomic, strong) NSMutableArray * connectingPeripherals;
 @property (nonatomic, strong) NSMutableArray * connectedPeripherals;
@@ -37,13 +38,12 @@
 
 #pragma mark scan or stopScan methods
 
-
 /**
  Scan Peripheral with Services
 
- @param serviceUUIDs The special service uuids.
- @param options options.
- @param onUpdateBlock call back.
+ *  @param serviceUUIDs scan service uuids
+ *  @param options options
+ *  @param onUpdateBlock call back
  */
 -(void)scanPeripheralWithServices:(NSArray *)serviceUUIDs options:(NSDictionary *)options onUpdated:(ZHPeripheralUpdatedBlock) onUpdateBlock;
 

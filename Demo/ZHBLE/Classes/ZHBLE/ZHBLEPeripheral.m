@@ -82,7 +82,7 @@
 
 -(NSNumber *)RSSI
 {
-    if (!_RSSI) {
+    if (!_RSSI && self.state == CBPeripheralStateConnected) {
         [self readRSSIOnFinish:nil];
     }
     return _RSSI;
@@ -103,14 +103,20 @@
 {
     NSAssert(discoverFinished !=nil, @"block finished must not be nil");
     self.didFinishServiceDiscovery = discoverFinished;
-    [_peripheral discoverServices:serviceUUIDs];
+    if (_peripheral.state == CBPeripheralStateConnected){
+        [_peripheral discoverServices:serviceUUIDs];
+    }
+    
 }
 
 -(void)discoverIncludedServices:(NSArray *)includedServiceUUIDs forService:(CBService *)service onFinish:(ZHSpecifiedServiceUpdatedBlock)finished
 {
     NSAssert(finished!=nil, @"block finished must'not be nil!");
     _servicesFindingIncludeService[service.UUID] = finished;
-    [_peripheral discoverIncludedServices:includedServiceUUIDs forService:service];
+    if (_peripheral.state == CBPeripheralStateConnected){
+        [_peripheral discoverIncludedServices:includedServiceUUIDs forService:service];
+    }
+    
     
 }
 
@@ -119,15 +125,19 @@
 {
     NSAssert(onfinish!=nil, @"block onfinish must'not be nil!");
     _characteristicsDiscoveredBlocks[service.UUID] = onfinish;
-    [_peripheral discoverCharacteristics:characteristicUUIDs forService:service];
-    
+    if (_peripheral.state == CBPeripheralStateConnected){
+        [_peripheral discoverCharacteristics:characteristicUUIDs forService:service];
+    }
 }
 
 -(void)discoverDescriptorsForCharacteristic:(CBCharacteristic *)characteristic onFinish:(ZHCharacteristicChangeBlock)onfinish
 {
     NSAssert(onfinish!=nil, @"block onfinish must'not be nil!");
     _descriptorDiscoveredBlocks[characteristic.UUID] = onfinish;
-    [_peripheral discoverDescriptorsForCharacteristic:characteristic];
+    if (_peripheral.state == CBPeripheralStateConnected){
+        [_peripheral discoverDescriptorsForCharacteristic:characteristic];
+    }
+    
     
 }
 
@@ -137,7 +147,9 @@
 {
     NSAssert(onUpdate!=nil, @"block onUpdate must'not be nil!");
     _characteristicsValueUpdatedBlocks[characteristic.UUID] = onUpdate;
-    [_peripheral readValueForCharacteristic:characteristic];
+    if (_peripheral.state == CBPeripheralStateConnected){
+        [_peripheral readValueForCharacteristic:characteristic];
+    }
     
 }
 
@@ -145,7 +157,10 @@
 {
     NSAssert(onUpdate!=nil, @"block onUpdate must'not be nil!");
     _descriptorValueUpdatedBlocks[descriptor.UUID] = onUpdate;
-    [_peripheral readValueForDescriptor:descriptor];
+    if (_peripheral.state == CBPeripheralStateConnected){
+        [_peripheral readValueForDescriptor:descriptor];
+    }
+    
 }
 
 #pragma mark Writing Characteristic and Characteristic Descriptor Values
@@ -156,7 +171,10 @@
         _characteristicValueWrtieBlocks[characteristic.UUID] = onfinish;
         
     }
-    [_peripheral writeValue:data forCharacteristic:characteristic type:type];
+    if (_peripheral.state == CBPeripheralStateConnected) {
+        [_peripheral writeValue:data forCharacteristic:characteristic type:type];
+    }
+    
 }
 
 -(void)writeValue:(NSData *)data forDescriptor:(CBDescriptor *)descriptor onFinish:(ZHDescriptorChangedBlock)onfinish
@@ -165,7 +183,11 @@
         _descriptorValueWrtieBlocks[descriptor.UUID] = onfinish;
         
     }
-    [_peripheral writeValue:data forDescriptor:descriptor];
+    if (_peripheral.state == CBPeripheralStateConnected)
+    {
+        [_peripheral writeValue:data forDescriptor:descriptor];
+    }
+    
 }
 
 
@@ -179,15 +201,20 @@
     }else{
         [self.characteristicsNotifyBlocks removeObjectForKey:characteristic.UUID];
     }
-    [_peripheral setNotifyValue:enabled forCharacteristic:characteristic];
+    if (_peripheral.state == CBPeripheralStateConnected) {
+        [_peripheral setNotifyValue:enabled forCharacteristic:characteristic];
+    }
+    
 }
 
 
 #pragma mark ReadRSSI
 -(void)readRSSIOnFinish:(ZHPeripheralUpdateRSSIBlock)onUpdated
 {
-    self.rssiUpdated = onUpdated;
-    [_peripheral readRSSI];
+    if (_peripheral && (_peripheral.state == CBPeripheralStateConnected)) {
+        self.rssiUpdated = onUpdated;
+        [_peripheral readRSSI];
+    }
 }
 
 #pragma mark - Delegate

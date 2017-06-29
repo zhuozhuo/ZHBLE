@@ -25,7 +25,7 @@ typedef void (^ZHPeripheralUpdatedBlock)(ZHBLEPeripheral *peripheral,NSDictionar
 typedef void (^ZHPeripheralConnectionBlock)(ZHBLEPeripheral *peripheral, NSError*error);
 typedef void (^ZHPeripheralDisConnectionBlock)(ZHBLEPeripheral *peripheral, NSError*error);
 typedef void (^ZHPeripheralUpdateRSSIBlock)(NSError *error, NSNumber *RSSI);
-
+typedef void (^ZHCentralStateDidUpdatedBlock)(CBCentralManager *central);
 //Peripheral
 typedef void (^ZHPeripheralManagerStatedChangedBlock)(NSDictionary *state);
 typedef void (^ZHCentralSubscriptionBlock)(CBCentral *central, CBCharacteristic *characteristic);

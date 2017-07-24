@@ -14,6 +14,7 @@
 #import "ZHBLEManager.h"
 
 @interface ZHBLECentral()<CBCentralManagerDelegate,CBPeripheralDelegate>
+@property (nonatomic, copy) ZHPeripheralDisConnectionBlock canCelConnectionBlock;
 @end
 
 
@@ -65,7 +66,7 @@
     self.connectingPeripherals  = [NSMutableArray array];
     self.connectedPeripherals   = [NSMutableArray array];
     self.connectionFinishBlocks = [NSMutableDictionary dictionary];
-   
+    
     [ZHBLEStoredPeripherals initializeStorage];//初始化存储
     if (![CBCentralManager instancesRespondToSelector:@selector(initWithDelegate:queue:options:)]) {
         //for version lowser than 7.0
@@ -124,7 +125,7 @@
                 onUpdateBlock(zhPeripheral,nil);
             }
         }];
-
+        
     }
     
     [self.manager scanForPeripheralsWithServices:serviceUUIDs                                            options:options];
@@ -143,7 +144,7 @@
 #pragma mark Establishing or cancel with peripherals
 -(void)connectPeripheral:(ZHBLEPeripheral *)peripheral options:(NSDictionary *)options onFinished:(ZHPeripheralConnectionBlock)finished
 {
-   
+    
     if (finished && peripheral) {
         self.connectionFinishBlocks[peripheral.identifier] = finished;
         [self.connectingPeripherals addObject: peripheral];
@@ -153,7 +154,7 @@
 
 -(void)cancelPeripheralConnection:(ZHBLEPeripheral *)peripheral onFinished:(ZHPeripheralConnectionBlock)ondisconnected
 {
-    self.disConnectionBlock = ondisconnected;
+    self.canCelConnectionBlock = ondisconnected;
     [self.manager cancelPeripheralConnection:peripheral.peripheral];
     
 }
@@ -231,7 +232,7 @@
         
         //Stored to local
         [ZHBLEStoredPeripherals saveUUID:peripheral.identifier];
-
+        
         if (finish) {
             finish(thePeripheral,nil);
             [self.connectionFinishBlocks removeObjectForKey:peripheral.identifier];
@@ -249,7 +250,7 @@
         finish(thePeripheral,error);
         [self.connectionFinishBlocks removeObjectForKey:thePeripheral.identifier];
     }
-
+    
     if (thePeripheral && [self.connectingPeripherals containsObject:thePeripheral]) {
         //remove it
         [self.connectingPeripherals removeObject:peripheral];
@@ -263,6 +264,9 @@
     ZHBLEPeripheral *thePeripheral = peripheral.delegate;
     if (self.disConnectionBlock) {
         self.disConnectionBlock(thePeripheral, error);
+    }
+    if (self.canCelConnectionBlock) {
+        self.canCelConnectionBlock(thePeripheral, error);
     }
     
     if (thePeripheral && [self.connectedPeripherals containsObject:thePeripheral]) {
@@ -284,8 +288,8 @@
     if (self.onPeripheralUpdated) {
         self.onPeripheralUpdated = nil;
     }
-    if (self.disConnectionBlock) {
-        self.disConnectionBlock = nil;
+    if (self.canCelConnectionBlock) {
+        self.canCelConnectionBlock = nil;
     }
     
 }

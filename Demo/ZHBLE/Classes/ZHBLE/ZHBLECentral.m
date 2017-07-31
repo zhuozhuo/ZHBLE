@@ -155,8 +155,9 @@
 -(void)cancelPeripheralConnection:(ZHBLEPeripheral *)peripheral onFinished:(ZHPeripheralConnectionBlock)ondisconnected
 {
     self.canCelConnectionBlock = ondisconnected;
-    [self.manager cancelPeripheralConnection:peripheral.peripheral];
-    
+    if (peripheral.peripheral && peripheral.peripheral.identifier) {
+        [self.manager cancelPeripheralConnection:peripheral.peripheral];
+    }
 }
 
 

@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
    s.license      = { :type => "MIT", :file => "LICENSE" }
    s.author             = { "Mr.jiang" => "414816566@qq.com" }
    s.platform     = :ios, "7.0"
-   s.source       = { :git => "https://github.com/zhuozhuo/ZHBLE.git", :tag => "0.1.9" }
+   s.source       = { :git => "https://github.com/zhuozhuo/ZHBLE.git", :tag => s.version }
    s.source_files  = "Classes", "Demo/ZHBLE/Classes/ZHBLE/*.{h,m}"
    s.public_header_files = "Demo/ZHBLE/Classes/ZHBLE/*.h"
    s.framework  = "CoreBluetooth"
